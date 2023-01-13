@@ -4,24 +4,11 @@
   
     
     <entry>
-      <title>cpp笔记</title>
-      <link href="/2023/01/13/cpp%E7%AC%94%E8%AE%B0/"/>
-      <url>/2023/01/13/cpp%E7%AC%94%E8%AE%B0/</url>
+      <title>technology</title>
+      <link href="/2023/01/13/technology/"/>
+      <url>/2023/01/13/technology/</url>
       
-        <content type="html"><![CDATA[<h2 id=""><a href="#" class="headerlink" title=""></a></h2><p>c++笔记</p>]]></content>
-      
-      
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>曾经的那个女孩</title>
-      <link href="/2023/01/13/%E6%9B%BE%E7%BB%8F%E7%9A%84%E9%82%A3%E4%B8%AA%E5%A5%B3%E5%AD%A9/"/>
-      <url>/2023/01/13/%E6%9B%BE%E7%BB%8F%E7%9A%84%E9%82%A3%E4%B8%AA%E5%A5%B3%E5%AD%A9/</url>
-      
-        <content type="html"><![CDATA[<p>#我的那个女孩子啊</p>]]></content>
+        <content type="html"><![CDATA[]]></content>
       
       
       
@@ -30,11 +17,43 @@
     
     
     <entry>
-      <title>我的青春</title>
-      <link href="/2023/01/13/%E6%88%91%E7%9A%84%E9%9D%92%E6%98%A5/"/>
-      <url>/2023/01/13/%E6%88%91%E7%9A%84%E9%9D%92%E6%98%A5/</url>
+      <title>cpp-1</title>
+      <link href="/2023/01/13/cpp-1/"/>
+      <url>/2023/01/13/cpp-1/</url>
       
-        <content type="html"><![CDATA[<p>##我的青春中有个她</p>]]></content>
+        <content type="html"><![CDATA[<h2 id="nihao"><a href="#nihao" class="headerlink" title="nihao"></a>nihao</h2>]]></content>
+      
+      
+      <categories>
+          
+          <category> cpp </category>
+          
+      </categories>
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Cherno-cpp-1</title>
+      <link href="/2023/01/13/Cherno-cpp-1/"/>
+      <url>/2023/01/13/Cherno-cpp-1/</url>
+      
+        <content type="html"><![CDATA[<p>####cpp and Memerey</p>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>我们</title>
+      <link href="/2023/01/13/%E6%88%91%E4%BB%AC/"/>
+      <url>/2023/01/13/%E6%88%91%E4%BB%AC/</url>
+      
+        <content type="html"><![CDATA[<p>#fdjfj</p>]]></content>
       
       
       <categories>
@@ -49,24 +68,36 @@
     
     
     <entry>
-      <title>My first blog</title>
-      <link href="/2023/01/11/My-first-blog/"/>
-      <url>/2023/01/11/My-first-blog/</url>
+      <title>cherno cpp 讲解</title>
+      <link href="/2023/01/13/cherno-cpp-2/"/>
+      <url>/2023/01/13/cherno-cpp-2/</url>
       
-        <content type="html"><![CDATA[<p>##开始<br>创建一个文件夹存放博客文件<br>首先要安装 node.js npm 两个服务<br>使用 npm 全局安装 hexo-cli 服务</p><p>###基本 hexo 命令使用<br>hexo s (start)启动本地博客，默认端口号: localhost:4000<br>hexo n (new)创建一个新的博客文章<br>hexo clean (清理)写完博客文章后，清理下数据<br>hexo g (刷新)对数据进行刷新<br>hexo s 重新启动 hexo 服务,可以看到 hexo 自动为你搭建了一个服务</p><p>###部署到 github 仓库<br>将 hexo 部署到 github 1.在自己的 github 上面搭建一个仓库，注意：仓库名要是自己的用户名.github.io 2.使用 npm 装一个 git 部署插件 命令：npm install -g -save hexo-deployer-git 3.修改配置 _config.yml 文件<br>在 deloyment 下面的 deploy 修改：<br>type: git<br>repo: (github 仓库地址)<br>branch: masten(指向空指针的意思) 4.将 hexo 部署导远端：hexo d (deplok)<br>注意：如果显示 not fround git 说明插件没安装好<br>window 电脑不需要再使用 github 用户密码登陆，直接推到远端<br>但是 linux 和 unix 相反</p><p>###修改主题，进行自定义<br>clone github 上面的主题到你所在的文件夹里面<br>修改主题文件还是 _config.yml 的 theme：landspace</p><p>###参考文献<br>@CodeSheep<br>@fi3ework</p>]]></content>
+        <content type="html"><![CDATA[<h2 id="good"><a href="#good" class="headerlink" title="good"></a>good</h2>]]></content>
       
       
+      <categories>
+          
+          <category> cpp </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> name </tag>
+            
+        </tags>
       
     </entry>
     
     
     
     <entry>
-      <title>Hello World</title>
-      <link href="/2023/01/11/hello-world/"/>
-      <url>/2023/01/11/hello-world/</url>
+      <title>Make you first blog</title>
+      <link href="/2023/01/11/My-first-blog/"/>
+      <url>/2023/01/11/My-first-blog/</url>
       
-        <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p><h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></tbody></table></figure><p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p><h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></tbody></table></figure><p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p><h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></tbody></table></figure><p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p><h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></tbody></table></figure><p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>]]></content>
+        <content type="html"><![CDATA[<h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p><code>hexo</code>是一个静态博客搭建框架，由 javaScript 实现，所以要调用到js服务端的node环境，与之相同的有：<br><code>hugo</code> (go语言实现的框架，大量信息情况下速度比hexo快)<br>除了静态博客框架，还有<code>WordPress</code>动态博客框架，可以放置到服务器根据用户需求注册账户等服务器端操作</p><h3 id="开始"><a href="#开始" class="headerlink" title="开始"></a>开始</h3><p><u>默认git，node，npm镜像配置完成</u><br>创建一个 blog 文件夹存放博客文件<br>首先要安装 <code>node npm</code> 两个服务<br>使用 npm 全局安装 <code>hexo-cli</code> 服务</p><p>###基本 hexo 命令使用<br><code>hexo init</code><strong>初始化</strong> hexo 文件，给定基础配置<br><code>hexo s</code> (start)<strong>启动</strong>本地博客，默认端口号: <code>localhost:4000</code><br><code>hexo n</code> (new)<strong>创建</strong>一个新的博客文章<br><code>hexo clean</code> (清理)写完博客文章后，<strong>清理数据</strong><br><code>hexo g</code> (刷新)对数据进行<strong>刷新</strong><br><code>hexo d</code> <strong>提交</strong>到github仓库<br><code>hexo new page </code><strong>创建page</strong>，就是创建一个新文件夹<br><code>hexo new fileName</code><strong>创建文件</strong>,文件创建在<code>/sourse/_post</code>下</p><h3 id="部署到-github-仓库"><a href="#部署到-github-仓库" class="headerlink" title="部署到 github 仓库"></a>部署到 github 仓库</h3><p>1.在自己的 github 上面<em>搭建一个仓库</em>，注意：<code>仓库名要是自己的用户名.github.io </code><br>2.使用 npm 装一个 git <em>部署插件</em> 命令：<code>npm install -g -save hexo-deployer-git </code><br>3.<em>修改配置</em> _config.yml 文件的 deploy：</p><blockquote><p>type: git<br>repo: github仓库http地址<br>branch: masten  (指向空指针的意思) </p></blockquote><p>Tip：<br>如果显示 <code>not fround git</code> 说明插件没安装好,再次尝试安装<br>window 电脑不需要再使用 github 用户密码登陆，直接推到远端<br>但是 linux 和 unix 相反</p><h3 id="修改主题，进行自定义"><a href="#修改主题，进行自定义" class="headerlink" title="修改主题，进行自定义"></a>修改主题，进行自定义</h3><p><code>clone</code> 上面的主题到：<code>/themes</code>里面<br>修改主题文件还是 _config.yml 内：</p><blockquote><p>theme：landspace(修改)<br>剩下的看文档介绍自定义主题</p></blockquote><h4 id="hexo框架操作注意："><a href="#hexo框架操作注意：" class="headerlink" title="hexo框架操作注意："></a>hexo框架操作注意：</h4><ul><li>window系统要安装git</li></ul><ul><li>必须是通过hexo命令创建的文件才可以被使用</li><li>我使用的是<code>hexo-theme-matery</code>主题，该主题分类关键字在页面中的<code>category</code>，在<code>_config.yml</code> 文件中配置命名，<code>/fileName/name/</code>fileName是用hexo命令创建的</li><li></li></ul><h4 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h4><p>@CodeSheep<br>@fi3ework</p>]]></content>
       
       
       
