@@ -4,8 +4,14 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="我们, BensonFuck">
-    <meta name="description" content="fdfjkd">
+    <meta name="keywords" content="前端网络, BensonFuck">
+    <meta name="description" content="学习要点：
+
+明白网络在计算机中发挥的作用，分层模型
+使用Ajax做基本操作，
+计算机网络中跨域问题
+
+理论理论的重要性开发过程找不到bug，原因就是理论不牢找不到问题网络部分的理论是非常多而复杂，实践操作的目的就是去理解理论知识点网络解决">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -17,7 +23,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>我们 | BensonFuck</title>
+    <title>前端网络 | BensonFuck</title>
     <link rel="icon" type="image/png" href="/favicon.png">
     
 
@@ -283,12 +289,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/3.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/21.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">我们</h1>
+                    <h1 class="description center-align post-title">前端网络</h1>
                 </div>
             </div>
         </div>
@@ -320,8 +326,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/%E6%88%91%E7%9A%84%E9%9D%92%E6%98%A5/" class="post-category">
-                                我的青春
+                            <a href="/categories/%E7%BD%91%E7%BB%9C/" class="post-category">
+                                网络
                             </a>
                         
                     </div>
@@ -333,21 +339,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>Publish Date:&nbsp;&nbsp;
-                    2023-01-13
+                    2023-01-14
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>Update Date:&nbsp;&nbsp;
-                    2023-01-13
+                    2023-01-14
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    1
+                    1.1k
                 </div>
                 
 
@@ -364,7 +370,88 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="fdfjkd"><a href="#fdfjkd" class="headerlink" title="fdfjkd"></a>fdfjkd</h1>
+                <p><strong>学习要点</strong>：</p>
+<ul>
+<li>明白网络在计算机中发挥的作用，分层模型</li>
+<li>使用<code>Ajax</code>做基本操作，</li>
+<li>计算机网络中跨域问题</li>
+</ul>
+<h4 id="理论"><a href="#理论" class="headerlink" title="理论"></a><center>理论</center></h4><p><strong>理论的重要性</strong><br>开发过程找不到bug，原因就是理论不牢找不到问题<br>网络部分的理论是非常多而复杂，<br>实践操作的目的就是去理解理论知识点<br>网络解决的问题是两个程序之间交换数据</p>
+<p>[TOC] <strong>分层模型</strong><br>每层相对独立，只解决自己的问题<br>每层无需考虑上层的交付<br>每层有多种解决方案<br>在上一层基础上加上点东西</p>
+<p><strong>五层模型</strong><br><font color="#0099ff">应用层</font>，应用具体消息<strong>格式</strong>（协议就是一个标准）<br><font color="#0099ff">传输层</font>，如何保证消息<strong>可靠传送</strong><br><font color="#0099ff">网络层</font>，就是如何在网络中找到对方 <strong>IP</strong>（目前通讯地址可变） 路由器<br><font color="#0099ff">数据链路层</font>，如何在一个子网中找到对方 <strong>Mac</strong> （身份证号不可变） 交换机<br><font color="#0099ff">物理层</font>，上面给我的东西我要用什么<strong>信号表述</strong></p>
+<p>—<em>国际OSI七层模型就是在应用层和传输层加多一个表示层和会话层</em>—</p>
+<p>[toc]UML用于定位网络<font color="#0099ff"> 服务 </font>，就是一个<strong>字符串</strong><br>URL（uniform resource locator，统一资源定位符）用于定位网络服务</p>
+<p><img src="http://mdrs.yuanjin.tech/img/202301121041726.png" alt="image-20230112104100679"></p>
+<p>URL是一个固定格式的字符串<br><em>表示形式</em></p>
+<p><img src="http://mdrs.yuanjin.tech/img/202301121029498.png" alt="URL流程表示图"></p>
+<p>它表达了：</p>
+<p>从网络中<font color="#0099ff">哪台计算机（domain）</font>中的<font color="#0099ff">哪个程序（port）</font>寻找<font color="#0099ff">哪个服务（path）</font>，并注明了获取服务的<font color="#0099ff">具体细节（path）</font>，以及要用什么样的<font color="#0099ff">协议通信（schema）</font></p>
+<!-- http默认端口：80 ，https默认端口：443
+没有写路径的时候，就是最后面会有一个斜杠，就是默认地址
+https://www.baidu.com/
+不然浏览器也会默认加上一个/ -->
+<ul>
+<li>当协议是<code>http</code>端口为<code>80</code>时，端口可以省略</li>
+<li>当协议是<code>https</code>端口为<code>443</code>时，端口可以省略</li>
+<li><code>schema</code>、<code>domain</code>、<code>path</code>是必填的，其他的根据具体的要求填写</li>
+</ul>
+<h2 id="http"><a href="#http" class="headerlink" title="http"></a>http</h2><ul>
+<li>传递消息的<font color="#0099ff">模式</font></li>
+<li>传递消息的<font color="#0099ff">格式</font><br><em>发起者是客户端client，接收者是服务器server（<strong>舔狗和女神</strong>）</em></li>
+<li>格式<br>请求行Line      客户端发送的是纯文本<br>请求头Header<br>请求体Body</li>
+</ul>
+<p>请求方式 post（提交） / get（获取） / delete（删除） / put（修改）</p>
+<blockquote>
+<p>使用情况：<br><font color="#0099ff">获取</font>数据一般使用<code>GET</code><br><font color="#0099ff">提交</font>数据一般使用<code>POST</code><br>各种<font color="#0099ff">静态资源</font>的获取，一般使用<code>GET</code></p>
+</blockquote>
+<h5 id="请求方法之间只有语义的区别"><a href="#请求方法之间只有语义的区别" class="headerlink" title="请求方法之间只有语义的区别"></a>请求方法之间<strong>只有</strong>语义的区别</h5><h4 id="请求头：host"><a href="#请求头：host" class="headerlink" title="请求头：host"></a>请求头：host</h4><p>可以定义一种请求格式，官方没有特定要求<br><code>Host</code>标注了<code>URL</code>地址中的<code>Domain + Port</code><br>示例：</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">HOST:study.baidu.com</span><br></pre></td></tr></tbody></table></figure>
+<h4 id="请求头：Content-Type"><a href="#请求头：Content-Type" class="headerlink" title="请求头：Content-Type"></a>请求头：Content-Type</h4><p>比如，请求体的数据为<code>loginId:admin, loginPwd:123456</code>，请求体可以用不同的格式发出</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Content-Type: application/x-www-form-urlencoded</span><br><span class="line"></span><br><span class="line">loginId=admin&amp;loginPwd=123123</span><br></pre></td></tr></tbody></table></figure>
+
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Content-Type: application/json</span><br><span class="line"></span><br><span class="line">{ "loginId": "admin", "loginPwd": "123123" }</span><br></pre></td></tr></tbody></table></figure>
+
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">Content-Type: multipart/form-data; boundary=----WebKitFormBoundaryraPtlntBIqy4X2Ho</span><br><span class="line"></span><br><span class="line">------WebKitFormBoundaryraPtlntBIqy4X2Ho</span><br><span class="line">Content-Disposition: form-data; name="loginId"</span><br><span class="line"></span><br><span class="line">admin</span><br><span class="line">------WebKitFormBoundaryraPtlntBIqy4X2Ho</span><br><span class="line">Content-Disposition: form-data; name="loginPwd"</span><br><span class="line"></span><br><span class="line">123456</span><br><span class="line">------WebKitFormBoundaryraPtlntBIqy4X2Ho--</span><br></pre></td></tr></tbody></table></figure>
+<p><code>Content-Type</code>标注了附带的响应体是什么格式<br>常见的值有：</p>
+<ol>
+<li><code>text/plain</code>: 普通的纯文本</li>
+<li><code>text/html</code>：html文档</li>
+<li><code>text/javascript</code> 或 <code>application/javascript</code>：js代码</li>
+<li><code>text/css</code>：css代码</li>
+<li><code>image/jpeg</code>：jpg图片</li>
+<li><code>attachment</code>：附件</li>
+<li>其他<code>MIME</code>类型<br>tip：<br>这个没有固定标准</li>
+</ol>
+<h4 id="响应码"><a href="#响应码" class="headerlink" title="响应码"></a>响应码</h4><p>常用的响应码：<br><img src="http://mdrs.yuanjin.tech/img/202301121310570.png" alt="响应码标识"></p>
+<ul>
+<li><p><strong>200 OK：一切正常。</strong></p>
+</li>
+<li><p><strong>301 Moved Permanently：资源已被永久重定向。</strong></p>
+<p> <code>你的请求我收到了，但是呢，你要的东西不在这个地址了，我已经永远的把它移动到了一个新的地址，麻烦你取请求新的地址，地址我放到了响应头的Location中了</code></p>
+<blockquote>
+<p>试试请求：<a target="_blank" rel="noopener" href="http://www.douyutv.com/">www.douyutv.com</a></p>
+</blockquote>
+</li>
+<li><p><strong>302 Found：资源已被临时重定向。</strong></p>
+<p> <code>你的请求我收到了，但是呢，你要的东西不在这个地址了，我临时的把它移动到了一个新的地址，麻烦你取请求新的地址，地址我放到了请求头的Location中了</code></p>
+</li>
+<li><p><strong>304 Not Modified：文档内容未被修改。</strong></p>
+<p> <code>你的请求我收到了，你要的东西跟之前是一样的，没有任何的变化，所以我就不给你结果了，你自己就用以前的吧。啥？你没有缓存以前的内容，关我啥事</code></p>
+</li>
+<li><p><strong>400 Bad Request：语义有误，当前请求无法被服务器理解。</strong></p>
+<p> <code>服务器无法解析请求报文</code></p>
+</li>
+<li><p>403 Forbidden：服务器拒绝执行。**</p>
+<p> <code>服务器不给东西给你</code></p>
+</li>
+<li><p><strong>404 Not Found：资源不存在。</strong></p>
+<p> <code>你的请求我收到了，但我没有你要的东西</code></p>
+</li>
+<li><p><strong>500 Internal Server Error：服务器内部错误。</strong></p>
+<p> <code>你的请求我已收到，但这道题我不会，解不出来，先睡了</code></p>
+</li>
+</ul>
+
                 
             </div>
             <hr/>
@@ -390,7 +477,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://example.com/2023/01/13/%E6%88%91%E4%BB%AC/">http://example.com/2023/01/13/%E6%88%91%E4%BB%AC/</a>
+                    <a href="http://example.com/2023/01/14/%E5%89%8D%E7%AB%AF%E7%BD%91%E7%BB%9C/">http://example.com/2023/01/14/%E5%89%8D%E7%AB%AF%E7%BD%91%E7%BB%9C/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -504,17 +591,18 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
+                <i class="far fa-dot-circle"></i>&nbsp;Current
+            </div>
             <div class="card">
-                <a href="/2023/01/13/Cherno-cpp-1/">
+                <a href="/2023/01/14/%E5%89%8D%E7%AB%AF%E7%BD%91%E7%BB%9C/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/11.jpg" class="responsive-img" alt="Cherno-cpp-1">
+                        <img src="/medias/featureimages/21.jpg" class="responsive-img" alt="前端网络">
                         
-                        <span class="card-title">Cherno-cpp-1</span>
+                        <span class="card-title">前端网络</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -524,17 +612,22 @@
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2023-01-13
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2023-01-14
+                            </span>
                         <span class="publish-author">
                             
-                            <i class="fas fa-user fa-fw"></i>
-                            Doctor Liu
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E7%BD%91%E7%BB%9C/" class="post-category">
+                                    网络
+                                </a>
+                            
                             
                         </span>
                     </div>
                 </div>
+
                 
             </div>
         </div>
@@ -545,13 +638,13 @@
                 Next&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2023/01/13/cherno-cpp-2/">
+                <a href="/2023/01/13/technology/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/5.jpg" class="responsive-img" alt="cherno cpp 讲解">
+                        <img src="/medias/featureimages/4.jpg" class="responsive-img" alt="technology">
                         
-                        <span class="card-title">cherno cpp 讲解</span>
+                        <span class="card-title">technology</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -566,23 +659,11 @@
                             </span>
                         <span class="publish-author">
                             
-                            <i class="fas fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/cpp/" class="post-category">
-                                    cpp
-                                </a>
-                            
+                            <i class="fas fa-user fa-fw"></i>
+                            Doctor Liu
                             
                         </span>
                     </div>
-                </div>
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/name/">
-                        <span class="chip bg-color">name</span>
-                    </a>
-                    
                 </div>
                 
             </div>
