@@ -4,6 +4,38 @@
   
     
     <entry>
+      <title>小婧</title>
+      <link href="/2023/01/27/%E5%B0%8F%E5%A9%A7/"/>
+      <url>/2023/01/27/%E5%B0%8F%E5%A9%A7/</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>过去</title>
+      <link href="/2023/01/14/%E4%BD%A0/"/>
+      <url>/2023/01/14/%E4%BD%A0/</url>
+      
+        <content type="html"><![CDATA[<h5 id="我心里的那个女孩"><a href="#我心里的那个女孩" class="headerlink" title="我心里的那个女孩"></a>我心里的那个女孩</h5><p>  或许我会忘记我们的很多细节了，时间会冲淡很多东西，但是，<code>杨诗琦</code>这个名字真的会毕生难忘，这个女孩是我的青春，更是像很多人一样，留在青春的遗憾，不知道未来会这么样，但是至少在目前看来是这样的。</p><p><a href="chushi.jpg"></a></p><p>XHR，Fetch<br>用户代理<br>浏览器能力：<br>自动发送请求的能力<br>自动解析</p><p>如果使用了<img> <vedio> <audio> <script> <css>都是自动调用form请求<br>用户点击了页面刷新，就会发送一个新的请求</p><p>重点；<br>浏览器的约定<br>当发送了GET请求时候，浏览器不会带上请求体，任何请求体都会被干掉<br>服务器看得到你的请求体，但是不会理会，只是协议上允许GET发送请求体</p><p>浏览器对行头的大小是有限制的，但是http协议没有固定规定<br>get请求放在行里面的，所有是由规定大小的，但是post请求放在体里面是没有限制大小的<br>URL地址编码，会把”阿斯克“字符，浏览器地址栏显示中文，其实计算机内部传输的是URL地址编码</p><p>get请求方便分享页面，但是post请求不便于分享数据，分享出去请求体没有分享出去<br>post请求数据不会保存在浏览器的</p><h3 id="自动解析响应的能力"><a href="#自动解析响应的能力" class="headerlink" title="自动解析响应的能力"></a>自动解析响应的能力</h3><p>XHR 和 Feach 两个都属于ajax的<br>ajax是调用浏览器的一个模板<br>var xhr = new XMLHTTPRequest();<br>xhr.open();<br>xhr.setRequest();<br>xhr.send();</p><p>js 代码执行，浏览器必须卡死，不能动其他的东西<br>js 的promise的东西</p><p>程序报错：<br>可预料，一定要处理的<br>不可预料，服务器宕机，断网等</p><p>token 令牌<br>出入证就是一种token令牌，</p><p>发送请求的时候就是要设置一个令牌：<br>Authorization: //这个令牌地址不一定，看开发过程中后端要放在哪里</p><p>http协议是一种无状态的协议</p><p>第三节课的内容</p><p>同源策略：<br>就是一套安全机制<br>同源策略对同源资源开放，对<br>两个URL地址完全相同，就是同源，否则就是异元<br>（前端的代码对用户是可见的，前端是不做加密的）<br>验证码不要写前端</p><p>跨源三种场景<br>网络通信：<br>a元素跳跃，加载css，js，图片，ajax等等<br>JS API<br>window.open  window.parent  iframe.contentWindow等等<br>存储<br>WebStorage IndexedDB 等</p><p>同源请求没有任何限制</p><p>跨域的前提条件：在浏览器里面发起的请求才会有跨域问题，“同源”就是浏览器搞出来的<br>脱离了浏览器就没有跨域的问题</p><p>跨域不一定引发问题<br>CORS<br>JSONP<br>代理</p><p>get 和 post 区别<br>根据RFC7231规定，get和post只是请求行的第一个单词，只是表达了不同的语义</p><p>服务器是程序，计算机是物理设备<br>很多bug就是在开发环境没有什么问题，但是一到生产环境（一般指linux）就会出现很多问题<br>这个一般就是代理出的问题<br>生产环境是没有话语的<br>原则：就是跟生产环境保持一致</p></script></audio></vedio></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 我的青春 </category>
+          
+      </categories>
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>前端网络</title>
       <link href="/2023/01/14/%E5%89%8D%E7%AB%AF%E7%BD%91%E7%BB%9C/"/>
       <url>/2023/01/14/%E5%89%8D%E7%AB%AF%E7%BD%91%E7%BB%9C/</url>
@@ -61,25 +93,6 @@
       
         <content type="html"><![CDATA[<p>####cpp and Memerey</p>]]></content>
       
-      
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>我们</title>
-      <link href="/2023/01/13/%E6%88%91%E4%BB%AC/"/>
-      <url>/2023/01/13/%E6%88%91%E4%BB%AC/</url>
-      
-        <content type="html"><![CDATA[<h1 id="fdfjkd"><a href="#fdfjkd" class="headerlink" title="fdfjkd"></a>fdfjkd</h1>]]></content>
-      
-      
-      <categories>
-          
-          <category> 我的青春 </category>
-          
-      </categories>
       
       
     </entry>
