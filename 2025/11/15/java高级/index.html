@@ -4,33 +4,11 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="产品经理入门, BensonFuck">
-    <meta name="description" content="产品经理
-产出：1份立项的文档，一份产品结构图，一套项目原型
-
-想清楚产品怎么做的人
-合格产品包括啊：
-
-用户，场景，需求
-功能，体验/优势，价值
-
-产品经理分类
-
-
-产品
-公司
-
-
-
-服务对象
-行业/职级
-
-
-平台
-工作内容
-
-
-面向服务">
+    <meta name="keywords" content="java高级, BensonFuck">
+    <meta name="description" content="java面向对象高级（代码块，内部类，函数时编程，常用API，gui编程/不重要）
+代码块是类的5大组成部分：成员变量，构造器，方法，代码块，内部类
+API：Arrays,toString(数组名)   //返回数组内容
+1234/*** ">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -42,7 +20,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>产品经理入门 | BensonFuck</title>
+    <title>java高级 | BensonFuck</title>
     <link rel="icon" type="image/png" href="/favicon.png">
     
 
@@ -308,12 +286,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/12.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/15.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">产品经理入门</h1>
+                    <h1 class="description center-align post-title">java高级</h1>
                 </div>
             </div>
         </div>
@@ -342,6 +320,15 @@
                 </div>
                 <div class="col s5 right-align">
                     
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/java/" class="post-category">
+                                java
+                            </a>
+                        
+                    </div>
+                    
                 </div>
             </div>
 
@@ -349,21 +336,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>Publish Date:&nbsp;&nbsp;
-                    2025-11-10
+                    2025-11-15
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>Update Date:&nbsp;&nbsp;
-                    2025-11-10
+                    2025-11-15
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    952
+                    619
                 </div>
                 
 
@@ -380,192 +367,64 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="产品经理"><a href="#产品经理" class="headerlink" title="产品经理"></a>产品经理</h2><ul>
-<li>产出：1份立项的文档，一份产品结构图，一套项目原型</li>
+                <h3 id="java面向对象高级"><a href="#java面向对象高级" class="headerlink" title="java面向对象高级"></a>java面向对象高级</h3><p>（代码块，内部类，函数时编程，常用API，gui编程/不重要）</p>
+<p><strong>代码块是类的5大组成部分：成员变量，构造器，方法，代码块，内部类</strong></p>
+<p><em>API：Arrays,toString(数组名)   //返回数组内容</em></p>
+<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">* 执行顺序（静态代码块 static{}）</span></span><br><span class="line"><span class="comment">* class -&gt; static(对静态资源初始化) —&gt; main（优先执行）</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></tbody></table></figure>
+
+<p><strong>内部类：</strong></p>
+<p>1.内部类可以直接访问外部类的</p>
+<ul>
+<li>静态成员（static修饰）</li>
+<li>实例成员（无static）</li>
 </ul>
-<p><strong>想清楚产品怎么做的人</strong></p>
-<p>合格产品包括啊：</p>
+<p>2.外部类名 .this 可以拿到寄生的外部类对象<code>外部类名.this</code></p>
+<p>静态内部类属于外部类本身（内部类有static修饰）</p>
+<p><code>Outer.Inner oi = new Outer.Inner();</code></p>
+<p><strong>匿名内部类（不用为类声明名字，默认隐藏名字）：</strong></p>
+<p>本质是子类，同时会立即创建一个子类对象  -&gt; 外部类名$ 编号</p>
+<p>用法：</p>
+<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Animal</span> <span class="variable">a</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Animal</span>(){</span><br><span class="line">    重写方法  <span class="comment">// 立即重写抽象父类方法</span></span><br><span class="line">};</span><br><span class="line"></span><br><span class="line"><span class="comment">//中段简写：</span></span><br><span class="line"> <span class="keyword">class</span> <span class="title class_">click</span> implements (name)</span><br><span class="line"> click(<span class="keyword">new</span> (name)(){</span><br><span class="line">	重写方法</span><br><span class="line"> })</span><br></pre></td></tr></tbody></table></figure>
+
+<p>API： Arrays.sort() // 排序</p>
+<p><strong>函数式编程：</strong></p>
+<p>Java中函数概念是：Lambda表达式</p>
+<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Swim</span> <span class="variable">s2</span> <span class="operator">=</span> ()-&gt;{</span><br><span class="line">    sout;</span><br><span class="line">};</span><br><span class="line"><span class="comment">// 只能替代函数式接口的内部类，注解： @FuntionalInterface</span></span><br></pre></td></tr></tbody></table></figure>
+
+<p>Lambda省略规则：</p>
 <ol>
-<li><strong>用户，场景，需求</strong></li>
-<li><strong>功能，体验/优势，价值</strong></li>
+<li>括号里参数类型全部可以省略</li>
+<li>只有一个参数，参数的{}也可以省略，多个参数不行</li>
+<li>Lambda中只有一行表达式，“{}”不写，“；”省略，有return去掉</li>
 </ol>
-<h2 id="产品经理分类"><a href="#产品经理分类" class="headerlink" title="产品经理分类"></a>产品经理分类</h2><table>
-<thead>
-<tr>
-<th>产品</th>
-<th>公司</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>服务对象</td>
-<td>行业/职级</td>
-</tr>
-<tr>
-<td>平台</td>
-<td>工作内容</td>
-</tr>
-</tbody></table>
-<h3 id="面向服务对象区分"><a href="#面向服务对象区分" class="headerlink" title="面向服务对象区分"></a><strong>面向服务对象区分</strong></h3><table>
-<thead>
-<tr>
-<th>C端产品经理</th>
-<th>B端产品经理</th>
-<th>G端产品经理</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>面向普通用户</td>
-<td>面向公司内部系统或外部企业</td>
-<td>面向政府部门，政务服务公共类产品</td>
-</tr>
-<tr>
-<td>如：淘宝，微信</td>
-<td>如：OA，CRM或者SaaS类产品</td>
-<td>如：政务服务网站，公安系统，户政系统</td>
-</tr>
-</tbody></table>
-<h3 id="按产品不同区分"><a href="#按产品不同区分" class="headerlink" title="按产品不同区分"></a><strong>按产品不同区分</strong></h3><table>
-<thead>
-<tr>
-<th>移动端产品经理</th>
-<th>PC客户端产品经理</th>
-<th>Web端产品经理</th>
-<th>智能硬件产品经理</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>手机应用程序，H5页面</td>
-<td>手机桌面引用程序</td>
-<td>网页相关前后台</td>
-<td>软件硬件结合家居，医疗，汽车，穿戴设备</td>
-</tr>
-</tbody></table>
-<h3 id="公司所属行业不同"><a href="#公司所属行业不同" class="headerlink" title="公司所属行业不同"></a><strong>公司所属行业不同</strong></h3><table>
-<thead>
-<tr>
-<th>教育产品经理</th>
-<th>电商产品经理</th>
-<th>金融产品经理</th>
-<th>医疗产品经理</th>
-<th>社交产品经理</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>xx教育</td>
-<td>淘宝，京东</td>
-<td>支付宝，财付通</td>
-<td>春雨医生，健康160</td>
-<td>微信，QQ</td>
-</tr>
-</tbody></table>
-<h3 id="按工作内容划分"><a href="#按工作内容划分" class="headerlink" title="按工作内容划分"></a><strong>按工作内容划分</strong></h3><table>
-<thead>
-<tr>
-<th>功能产品经理</th>
-<th>策划产品经理</th>
-<th>商业产品经理</th>
-<th>数据产品经理</th>
-<th>用户体验产品经理</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>专注产品功能规划设计，基于用户需求和业务改进点设计页面功能</td>
-<td>专注设计策划方案，如根据用户生命周期，设计用户增长策略，根据用户画像推进策略等</td>
-<td>参与商业化运营决策，商业变现模式设计，对收入利润和ROI负责，营收场景设计，广告变现等</td>
-<td>专注设计数据中台和大数据中台相关数据产品解决方案，研究数据价值，数据驱动决策</td>
-<td>专注用户体验设计，理解用户心理，关注交互，UI等交互体验和视觉效果</td>
-</tr>
-</tbody></table>
+<p>构造器引用：</p>
+<p>​	类名::new</p>
+<p><strong>String常用API：</strong></p>
+<p>java.lang 包/自动导的包</p>
+<p>tip: 每次new都会产生一个新对象，在堆内存中</p>
+<p>方式1：（推荐）直接调“ ”创建字符串，封装字符串对象</p>
+<p>方式2：构造器初始化对象</p>
+<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">String</span> <span class="variable">s2</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">String</span>();</span><br><span class="line"><span class="type">String</span> <span class="variable">s3</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">String</span>(<span class="string">" "</span>);</span><br><span class="line"><span class="type">char</span>[] chars = {<span class="string">'n'</span>,<span class="string">'e'</span>,<span class="string">''</span>,<span class="string">''</span>};</span><br><span class="line"><span class="type">String</span> <span class="variable">s4</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">String</span>(chars); <span class="comment">// 将chars字符转字符串</span></span><br></pre></td></tr></tbody></table></figure>
+
+<p>提供的方法：</p>
 <ul>
-<li>职级划分</li>
+<li>length()  获取字符串长度</li>
+<li>charAt() 获取索引位置字符返回</li>
+<li>toChatArray() 字符串转字符数组返回</li>
+<li>equals()  判断两个字符串是否一样</li>
+<li>equalsIgonreCase()  忽略大小判断两个字符串是否一样</li>
+<li>substring()  从传入索引处截取到末尾获取新字符串，可以两参/一参</li>
+<li>replace()  用新值替换旧值</li>
+<li>contains()  判断字符串是否包含某个字符</li>
+<li>startsWith()  判断字符串是否有以….开头</li>
+<li>split()  以某个字符分割，并返回字符串</li>
 </ul>
-<ol>
-<li>产品专员/助理（原型设计，文档撰写）</li>
-<li>产品经理（对自己负责的模块有话语权和决策权）</li>
-<li>高级产品经理（负责某个产品线或业务线）</li>
-<li>产品总监（多个产品线或业务线负责人）</li>
-</ol>
-<h2 id="产品开发流程"><a href="#产品开发流程" class="headerlink" title="产品开发流程"></a>产品开发流程</h2><table>
-<thead>
-<tr>
-<th>分析定义</th>
-<th>软件设计</th>
-<th>编码测试</th>
-<th>运行维护</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>问题定义</td>
-<td>概要设计</td>
-<td>程序编码</td>
-<td>运行维护</td>
-</tr>
-<tr>
-<td>可行性研究</td>
-<td>详细设计</td>
-<td>集成测试</td>
-<td></td>
-</tr>
-<tr>
-<td>需求分析</td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-</tbody></table>
-<ul>
-<li><p><strong>产品技术中心</strong></p>
-<ol>
-<li>产品设计部</li>
-</ol>
-<ul>
-<li><em>产品经理</em><br>  <em>平面设计师</em><br>  <em>交互设计师</em></li>
-</ul>
-<ol start="2">
-<li>研发部</li>
-</ol>
-<ul>
-<li><em>前端工程师</em><br>  <em>后端工程师</em><br>  <em>运维工程师</em><br>  <em>测试工程师</em></li>
-</ul>
-<ol start="3">
-<li>项目组</li>
-</ol>
-<ul>
-<li><em>项目经理</em>（不一定每个公司有）</li>
-</ul>
-</li>
-</ul>
-<h3 id="前端工程师"><a href="#前端工程师" class="headerlink" title="前端工程师"></a>前端工程师</h3><pre><code> 网站，app，小程序
-</code></pre>
-<h3 id="后端工程师"><a href="#后端工程师" class="headerlink" title="后端工程师"></a>后端工程师</h3><pre><code>平台设计，接口设计，功能实现
-</code></pre>
-<h3 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h3><pre><code>正确，完整，安全，质量保证
-</code></pre>
-<h3 id="运维"><a href="#运维" class="headerlink" title="运维"></a>运维</h3><pre><code>服务器，操作系统，数据库
-</code></pre>
-<h3 id="项目经理职责"><a href="#项目经理职责" class="headerlink" title="项目经理职责"></a>项目经理职责</h3><pre><code>制定项目管理计划
-组建项目团队
-跟踪项目进度
-监控项目质量
-控制项目成本
-</code></pre>
-<h3 id="产品经理职责"><a href="#产品经理职责" class="headerlink" title="产品经理职责"></a>产品经理职责</h3><pre><code>评估产品机会
-    1. 需求收集
-    2. 可行性研究 ---&gt; MRD（市场需求文档）/立项报告
-定义要开发产品
-    1. 需求分析
-    2. 原型设计
-</code></pre>
-<h3 id="用户体验设计师"><a href="#用户体验设计师" class="headerlink" title="用户体验设计师"></a>用户体验设计师</h3><pre><code>用户界面设计/UI
-    1. 视觉效果
-    2. 界面图标 ---&gt; 效果图/icon
-用户交互设计/UE
-    1. 动作交互
-    2. 反馈体验 ---&gt; 交互稿
-</code></pre>
-<ul>
-<li>工作误区<br>  画原型的<br>  管理项目的（关注产品本身）<br>  需求混淆（老板用户自己需求不等于产品需求）<br>  职权混淆（对产品生命周期负责，驱动同事写作，属同级）</li>
-</ul>
+<p><strong>ArrayList集合：</strong></p>
+<p>创建：</p>
+<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Arraylist &lt;E&gt; list = <span class="keyword">new</span> <span class="title class_">Arraylist</span>&lt;&gt;();</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">* 提供add()  remove()  set()  get()  size()方法</span></span><br><span class="line"><span class="comment">* &lt;E&gt;  泛型（后续提到）</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></tbody></table></figure>
+
+<p>此处略过Gui图形化界面编程…….</p>
+<hr>
 
                 
             </div>
@@ -592,7 +451,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://example.com/2025/11/10/%E4%BA%A7%E5%93%81%E7%BB%8F%E7%90%86%E5%85%A5%E9%97%A8/">http://example.com/2025/11/10/%E4%BA%A7%E5%93%81%E7%BB%8F%E7%90%86%E5%85%A5%E9%97%A8/</a>
+                    <a href="http://example.com/2025/11/15/java%E9%AB%98%E7%BA%A7/">http://example.com/2025/11/15/java%E9%AB%98%E7%BA%A7/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -710,13 +569,13 @@
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
             <div class="card">
-                <a href="/2025/11/14/java%E5%9F%BA%E7%A1%80/java%E5%9F%BA%E7%A1%80/">
+                <a href="/2025/11/15/javaEE%E5%8A%A0%E5%BC%BA/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/16.jpg" class="responsive-img" alt="java基础">
+                        <img src="/medias/featureimages/4.jpg" class="responsive-img" alt="javaEE加强">
                         
-                        <span class="card-title">java基础</span>
+                        <span class="card-title">javaEE加强</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -727,7 +586,7 @@
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2025-11-14
+                            <i class="far fa-clock fa-fw icon-date"></i>2025-11-15
                         </span>
                         <span class="publish-author">
                             
@@ -751,13 +610,13 @@
                 Next&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2025/11/07/6%E5%B9%B4%E5%90%8E%E6%88%91%E4%BB%AC%E5%9C%A8%E4%B8%80%E8%B5%B7%E4%BA%86/6%E5%B9%B4%E5%90%8E%E6%88%91%E4%BB%AC%E5%9C%A8%E4%B8%80%E8%B5%B7%E4%BA%86/">
+                <a href="/2025/11/14/java%E5%9F%BA%E7%A1%80/java%E5%9F%BA%E7%A1%80/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/18.jpg" class="responsive-img" alt="6年后我们在一起了">
+                        <img src="/medias/featureimages/16.jpg" class="responsive-img" alt="java基础">
                         
-                        <span class="card-title">6年后我们在一起了</span>
+                        <span class="card-title">java基础</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -768,14 +627,14 @@
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2025-11-07
+                                <i class="far fa-clock fa-fw icon-date"></i>2025-11-14
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/%E8%80%81%E5%A9%86/" class="post-category">
-                                    老婆
+                            <a href="/categories/java/" class="post-category">
+                                    java
                                 </a>
                             
                             
