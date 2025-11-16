@@ -343,7 +343,7 @@ API：Arrays,toString(数组名)   //返回数组内容
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>Update Date:&nbsp;&nbsp;
-                    2025-11-15
+                    2025-11-16
                 </div>
                 
 
@@ -372,8 +372,7 @@ API：Arrays,toString(数组名)   //返回数组内容
 <p><em>API：Arrays,toString(数组名)   //返回数组内容</em></p>
 <figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">* 执行顺序（静态代码块 static{}）</span></span><br><span class="line"><span class="comment">* class -&gt; static(对静态资源初始化) —&gt; main（优先执行）</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></tbody></table></figure>
 
-<p><strong>内部类：</strong></p>
-<p>1.内部类可以直接访问外部类的</p>
+<h3 id="内部类"><a href="#内部类" class="headerlink" title="内部类"></a><strong>内部类</strong></h3><p>1.内部类可以直接访问外部类的</p>
 <ul>
 <li>静态成员（static修饰）</li>
 <li>实例成员（无static）</li>
@@ -381,14 +380,12 @@ API：Arrays,toString(数组名)   //返回数组内容
 <p>2.外部类名 .this 可以拿到寄生的外部类对象<code>外部类名.this</code></p>
 <p>静态内部类属于外部类本身（内部类有static修饰）</p>
 <p><code>Outer.Inner oi = new Outer.Inner();</code></p>
-<p><strong>匿名内部类（不用为类声明名字，默认隐藏名字）：</strong></p>
-<p>本质是子类，同时会立即创建一个子类对象  -&gt; 外部类名$ 编号</p>
+<h3 id="匿名内部类（不用为类声明名字，默认隐藏名字）"><a href="#匿名内部类（不用为类声明名字，默认隐藏名字）" class="headerlink" title="匿名内部类（不用为类声明名字，默认隐藏名字）"></a><strong>匿名内部类（不用为类声明名字，默认隐藏名字）</strong></h3><p>本质是子类，同时会立即创建一个子类对象  -&gt; 外部类名$ 编号</p>
 <p>用法：</p>
 <figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Animal</span> <span class="variable">a</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Animal</span>(){</span><br><span class="line">    重写方法  <span class="comment">// 立即重写抽象父类方法</span></span><br><span class="line">};</span><br><span class="line"></span><br><span class="line"><span class="comment">//中段简写：</span></span><br><span class="line"> <span class="keyword">class</span> <span class="title class_">click</span> implements (name)</span><br><span class="line"> click(<span class="keyword">new</span> (name)(){</span><br><span class="line">	重写方法</span><br><span class="line"> })</span><br></pre></td></tr></tbody></table></figure>
 
 <p>API： Arrays.sort() // 排序</p>
-<p><strong>函数式编程：</strong></p>
-<p>Java中函数概念是：Lambda表达式</p>
+<h3 id="函数式编程"><a href="#函数式编程" class="headerlink" title="函数式编程"></a><strong>函数式编程</strong></h3><p>Java中函数概念是：Lambda表达式</p>
 <figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Swim</span> <span class="variable">s2</span> <span class="operator">=</span> ()-&gt;{</span><br><span class="line">    sout;</span><br><span class="line">};</span><br><span class="line"><span class="comment">// 只能替代函数式接口的内部类，注解： @FuntionalInterface</span></span><br></pre></td></tr></tbody></table></figure>
 
 <p>Lambda省略规则：</p>
@@ -419,8 +416,7 @@ API：Arrays,toString(数组名)   //返回数组内容
 <li>startsWith()  判断字符串是否有以….开头</li>
 <li>split()  以某个字符分割，并返回字符串</li>
 </ul>
-<p><strong>ArrayList集合：</strong></p>
-<p>创建：</p>
+<h3 id="ArrayList集合"><a href="#ArrayList集合" class="headerlink" title="ArrayList集合"></a><strong>ArrayList集合</strong></h3><p>创建：</p>
 <figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Arraylist &lt;E&gt; list = <span class="keyword">new</span> <span class="title class_">Arraylist</span>&lt;&gt;();</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">* 提供add()  remove()  set()  get()  size()方法</span></span><br><span class="line"><span class="comment">* &lt;E&gt;  泛型（后续提到）</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></tbody></table></figure>
 
 <p>此处略过Gui图形化界面编程…….</p>
@@ -834,7 +830,7 @@ API：Arrays,toString(数组名)   //返回数组内容
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;Total Words:&nbsp;<span
-                        class="white-color">8.1k</span>
+                        class="white-color">16.2k</span>
             
             
             
