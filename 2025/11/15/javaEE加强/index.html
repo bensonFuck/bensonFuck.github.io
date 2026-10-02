@@ -1,0 +1,752 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>javaEE加强 | BensonFuck</title><meta name="author" content="Doctor Liu"><meta name="copyright" content="Doctor Liu"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="javaEE基础加强 异常，泛型，集合框架 stream流 File，字符集，IO流框架 多线程 网络编程 java高级技术  异常体系（java.lang.Throuable）Error：是系统级别的异常，Sun公司自己用的 Exception（开发人员控制）：  Runtime Exception:运行异常 其他异常（红线提醒）  1&#x2F;&#x2F; 使用try（）&#123;&#125;catch&amp;#1">
+<meta property="og:type" content="article">
+<meta property="og:title" content="javaEE加强">
+<meta property="og:url" content="https://bensonfuck.github.io/2025/11/15/javaEE%E5%8A%A0%E5%BC%BA/index.html">
+<meta property="og:site_name" content="BensonFuck">
+<meta property="og:description" content="javaEE基础加强 异常，泛型，集合框架 stream流 File，字符集，IO流框架 多线程 网络编程 java高级技术  异常体系（java.lang.Throuable）Error：是系统级别的异常，Sun公司自己用的 Exception（开发人员控制）：  Runtime Exception:运行异常 其他异常（红线提醒）  1&#x2F;&#x2F; 使用try（）&#123;&#125;catch&amp;#1">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://bensonfuck.github.io/img/butterfly-icon.png">
+<meta property="article:published_time" content="2025-11-15T02:00:00.000Z">
+<meta property="article:modified_time" content="2026-10-02T03:09:42.054Z">
+<meta property="article:author" content="Doctor Liu">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://bensonfuck.github.io/img/butterfly-icon.png"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "javaEE加强",
+  "url": "https://bensonfuck.github.io/2025/11/15/javaEE%E5%8A%A0%E5%BC%BA/",
+  "image": "https://bensonfuck.github.io/img/butterfly-icon.png",
+  "datePublished": "2025-11-15T02:00:00.000Z",
+  "dateModified": "2026-10-02T03:09:42.054Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "Doctor Liu",
+      "url": "https://bensonfuck.github.io"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://bensonfuck.github.io/2025/11/15/javaEE%E5%8A%A0%E5%BC%BA/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=5.7.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.3.1/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        const data = { value }
+
+        if (ttl != null) {
+          data.expiry = Date.now() + ttl * 86400000
+        }
+
+        localStorage.setItem(key, JSON.stringify(data))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return
+
+        try {
+          const data = JSON.parse(itemStr)
+
+          if (data.expiry && Date.now() > data.expiry) {
+            localStorage.removeItem(key)
+            return
+          }
+
+          return data.value
+        } catch {
+          localStorage.removeItem(key)
+        }
+      }
+    }
+
+    const scriptCache = new Map()
+    const cssCache = new Map()
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => {
+        if (scriptCache.has(url)) {
+          return scriptCache.get(url)
+        }
+
+        const promise = new Promise((resolve, reject) => {
+          const script = document.createElement('script')
+
+          script.src = url
+          script.async = true
+
+          for (const key in attr) {
+            script.setAttribute(key, attr[key])
+          }
+
+          script.onload = resolve
+          script.onerror = reject
+
+          document.head.appendChild(script)
+        })
+
+        scriptCache.set(url, promise)
+
+        return promise
+      },
+      getCSS: (url, id) => {
+        if (cssCache.has(url)) {
+          return cssCache.get(url)
+        }
+
+        const promise = new Promise((resolve, reject) => {
+          const link = document.createElement('link')
+
+          link.rel = 'stylesheet'
+          link.href = url
+
+          if (id) {
+            link.id = id
+          }
+
+          link.onload = resolve
+          link.onerror = reject
+
+          document.head.appendChild(link)
+        })
+
+        cssCache.set(url, promise)
+
+        return promise
+      },
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const metaThemeColor = document.querySelector('meta[name="theme-color"]')
+      const activateDarkMode = () => {
+        document.documentElement.dataset.theme = 'dark'
+        if (metaThemeColor !== null) {
+          metaThemeColor.setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.dataset.theme = 'light'
+        if (metaThemeColor !== null) {
+          metaThemeColor.setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          const mediaQueryDark = window.matchMedia('(prefers-color-scheme: dark)')
+          const mediaQueryLight = window.matchMedia('(prefers-color-scheme: light)')
+
+          if (theme === undefined) {
+            if (mediaQueryLight.matches) activateLightMode()
+            else if (mediaQueryDark.matches) activateDarkMode()
+            else {
+              const hour = new Date().getHours()
+              const start = 6
+              const end = 18
+              const isNight =
+                start < end
+                    ? hour < start || hour >= end
+                    : hour >= start || hour < end
+              isNight ? activateDarkMode() : activateLightMode()
+            }
+            mediaQueryDark.addEventListener('change', e => {
+              if (saveToLocal.get('theme') === undefined) {
+                e.matches ? activateDarkMode() : activateLightMode()
+              }
+            })
+          } else {
+            theme === 'light' ? activateLightMode() : activateDarkMode()
+          }
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":true},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.13.0/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: true
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'javaEE加强',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><meta name="generator" content="Hexo 8.1.2"></head><body><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">BensonFuck</span></a><a class="nav-page-title" href="/"><span class="site-name">javaEE加强</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  返回首页</span></span></a></span><div id="menus"></div></nav><div id="post-info"><h1 class="post-title">javaEE加强</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2025-11-15T02:00:00.000Z" title="发表于 2025-11-15 10:00:00">2025-11-15</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-10-02T03:09:42.054Z" title="更新于 2026-10-02 11:09:42">2026-10-02</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/java/">java</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h3 id="javaEE基础加强"><a href="#javaEE基础加强" class="headerlink" title="javaEE基础加强"></a>javaEE基础加强</h3><ol>
+<li>异常，泛型，集合框架</li>
+<li>stream流</li>
+<li>File，字符集，IO流框架</li>
+<li>多线程</li>
+<li>网络编程</li>
+<li>java高级技术</li>
+</ol>
+<h3 id="异常体系（java-lang-Throuable）"><a href="#异常体系（java-lang-Throuable）" class="headerlink" title="异常体系（java.lang.Throuable）"></a>异常体系（java.lang.Throuable）</h3><p>Error：是系统级别的异常，Sun公司自己用的</p>
+<p>Exception（开发人员控制）：</p>
+<ul>
+<li>Runtime Exception:运行异常</li>
+<li>其他异常（红线提醒）</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">// 使用try（）&#123;&#125;catch&#123;&#125; 捕获异常，（）内为执行后close（）线程部分，可以省略try&#123;    &#125;catch(Exception e)&#123;    e.  // 调用打印输出异常内容&#125;// ctrl+enter将异常抛出到上一层	</span><br></pre></td></tr></table></figure>
+
+<p>tip：idea中ctrl + alt + t 快速创建try{…}catch{…}</p>
+<p>异常作用：</p>
+<p>可以作为方法的一种特殊返回值，以便通知上层调用者方法执行问题(外抛异常： <code>throw new Exception(&quot; &quot;);</code>)</p>
+<p>异常：代码编译或运行时可能出现的错误</p>
+<p>自定义异常:</p>
+<p>java无法为世界上全部问题提供异常类来代表（java目前逐步放弃编译异常，以运行异常为主）</p>
+<h3 id="异常处理"><a href="#异常处理" class="headerlink" title="异常处理"></a>异常处理</h3><ol>
+<li>抛出异常提示信息</li>
+<li>最外层捕获异常后，尝试修复</li>
+</ol>
+<h3 id="泛型"><a href="#泛型" class="headerlink" title="泛型"></a>泛型</h3><p>定义类，接口，方法时，同时声明了一个或多个类型变量（如： ）</p>
+<p>作用：在编译阶段约束所能操作的数据类型，并自动进行检查能力</p>
+<p>本质：把具体的变量类型传给类型变量</p>
+<p><strong>泛型接口方法（架构师）</strong>：</p>
+<p>建类变量用 E（元素类型），T（返回Type），K（键类型），V（值类型）全部大写</p>
+<p>方法，通配符，上下限</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">public static &lt;T&gt; void (name) (T (name))public static &lt;T&gt; T (name) (T (name))</span><br></pre></td></tr></table></figure>
+
+<p>tip:通配符就是“？” 可以使用泛型代表一切类型，ETKV是定义泛型时使用</p>
+<p><strong>通配符问题，其他什么狗也能进来，于是引出上下限</strong></p>
+<p>泛型上限：<code>? extends Car:?</code> 能接Car或其子类</p>
+<p>泛型下限：<code>? super Car:?</code> 能接Car或其父类</p>
+<p><strong>泛型不支持的基本数据类型，只支持对象类型（引用数据类型）</strong></p>
+<p>解决方式（包装类），万物皆对象的思想</p>
+<p>基本数据类型包装成对象的类型：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">int -&gt; Integerchar -&gt; Character // 其他基本是首字母大写// 这就转成了对象类型</span><br></pre></td></tr></table></figure>
+
+<p>手动包装：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Integer it1 = Integer.valueOf(100);Integer it2 = Integer.valueOf(100); // -128~127 源码it1 == it2;  //一个cache缓存</span><br></pre></td></tr></table></figure>
+
+<p>自动装箱：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ArrayList&lt;Integer&gt; list = new ArrayList&lt;&gt;();list.add();  //自动装箱int i = list.get(); // 自动拆箱</span><br></pre></td></tr></table></figure>
+
+<p>Api：</p>
+<p><code>Integer.parseInt(String s)</code> 把字符串类型的数值转换成数值本身对应的真实类型</p>
+<p><code>Integer.valueOf(String s)</code> 把基本数据类型转字符串类型</p>
+<p><code>toString(double d)</code></p>
+<p><code>toString()</code></p>
+<h3 id="集合框架"><a href="#集合框架" class="headerlink" title="集合框架"></a>集合框架</h3><p>（Collection&#x2F;Map两大框架）</p>
+<h3 id="Collection"><a href="#Collection" class="headerlink" title="Collection"></a>Collection</h3><ul>
+<li>list<ol>
+<li>ArrayList</li>
+<li>LinkedList</li>
+</ol>
+</li>
+<li>set<ol>
+<li>HashSet -&gt; LinkedHashSet</li>
+<li>TreeSet</li>
+</ol>
+</li>
+</ul>
+<p>List集合：添加元素有序，可重复，有索引</p>
+<p>Set集合：无序，不重复，无索引（LinkedHashSet除外）</p>
+<p><strong>常用方法：</strong></p>
+<p><code>add(E e)</code> 添加</p>
+<p><code>clear()</code> 清除所有元素</p>
+<p><code>remove(E e)</code> 指定对象在集合中删除</p>
+<p><code>contains(Object obj)</code> 判断是否含指对象</p>
+<p><code>isEmpty()</code> 判断是否为空</p>
+<p><code>toArray()</code> 把集合中元素，存储到数组中</p>
+<p>collection家族的3种遍历方式：</p>
+<p>​ 迭代器是用来遍历集合的专用方式，java的迭代器代表是Iterator</p>
+<p><strong>方法名：</strong></p>
+<p>​ <code>hasNext()</code> 询问当前元素，存返回true or false（源码是 <code>return (name) != size;</code> 索引来判断）</p>
+<p>​ <code>E Next()</code> 获元素位置，并指向下一元素</p>
+<p><strong>方式2：</strong></p>
+<p><em><strong>增强for循环遍历</strong></em> for(元素的数据类型 变量名 ： 数组&#x2F;集合{})</p>
+<p><strong>方式3:</strong></p>
+<p><em><strong>Lambda表达式</strong></em>（JDK8开始） forEach（） 结合Lambda遍历集合</p>
+<p>3种遍历方式区别：<strong>并发修改异常问题</strong></p>
+<ol>
+<li>补位（index） 方式一，做一个 <code>i--</code> 操作</li>
+<li>无需<code>i--</code> 做倒序遍历方式</li>
+</ol>
+<p>2种迭代器（适用于无索引的情况）</p>
+<p>tip： it.remove() 使用迭代器删除，不用list</p>
+<p>**总结：**增强for和Lambda只适合遍历（无法解决并发修改异常问题），不适合遍历并删除</p>
+<p>​ 有索引，用for循环</p>
+<p>​ 无索引，用迭代器删除</p>
+<p><strong>ArrayList 底层基于数组存储数据（查询慢，从头开始遍历）</strong></p>
+<p><strong>LinkedList 底层基于双链表（查询速度快，增删快，折半算法）</strong></p>
+<p><strong>新增方法：</strong></p>
+<ul>
+<li><code>addFirst()</code> 头插元素</li>
+<li><code>addLast()</code> 尾插元素</li>
+<li><code>get...</code></li>
+<li><code>remove...</code></li>
+</ul>
+<p>！！！ 独立功能，独立成方法！！！</p>
+<h3 id="Set-集合"><a href="#Set-集合" class="headerlink" title="Set 集合"></a>Set 集合</h3><p>HashSet：无序，不重复，无索引</p>
+<p>LinkedHashSet：有序，不重复，无索引</p>
+<p>TreeSet：排序，不重复，无索引</p>
+<p><em><strong>底层原理：</strong></em></p>
+<p>哈希值：一个<code>int</code>类型的随机值，java中每一个对象都有一个哈希值</p>
+<p>java中所有对象，都可以调用Object类提供的HashCode方法，返回对象自己的哈希值</p>
+<p><strong>不同对象，它们的哈希值大概率不相等，但可能相等（哈希碰撞） int(-21亿~21亿多)</strong></p>
+<p><em>HashSet底层：基于哈希表存储，</em></p>
+<p>JDK8前：哈希表 &#x3D; 数组 + 链表</p>
+<p>JDK8后：哈希表 &#x3D; 数组 + 链表 + 红黑树 （增删改查性能更佳）</p>
+<table>
+<thead>
+<tr>
+<th>Null</th>
+<th>… …..</th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>0</td>
+<td>1</td>
+<td>2</td>
+<td>3</td>
+<td>……….</td>
+<td>16</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<ol>
+<li>new 后创建一个长度为16的数组，默认加载因子为0.75（16x0.75&#x3D;12，默认到12扩容），数组名为table（tip：k8后，链表长度超过8，数组长度&gt;&#x3D;64，自动转红黑树）</li>
+<li>使用元素的哈希值（随机）对数组长度做运算，计算处应存入的位置</li>
+<li>判断为NULL直接存入</li>
+<li>不为NULL，表示有元素，调用equals方法比较相等，不存在不相等则存入</li>
+</ol>
+<p>tip：k8前，占老元素位置，k8后，挂老元素下面</p>
+<h3 id="LinkedHashSet底层原理"><a href="#LinkedHashSet底层原理" class="headerlink" title="LinkedHashSet底层原理"></a>LinkedHashSet底层原理</h3><ol>
+<li>基于哈希表（数组+链表+红黑树）</li>
+<li>加了双链表机制记录前后元素位置（有序）</li>
+</ol>
+<p><strong>TreeSet集合一点要排序，解决无默认比较2种方法：</strong></p>
+<ol>
+<li>对象类型实现一个Comparable 比较接口，重写compare方法，指定比较大小规则</li>
+<li><code>public TreeSet(Comparable c)</code> 集合自带比较器 Comparetor对象（实现<code>implements Comparable&lt;E&gt;</code> 接口,重写ComparableTo（）方法）</li>
+</ol>
+<p><strong>规则：</strong></p>
+<ol>
+<li>t2.compareTo(t1) 左&gt;右，返回正整数</li>
+<li>t2 &#x3D;&#x3D; this 比较者 左&lt;右，返回负整数</li>
+<li>t1 &#x3D;&#x3D; 0 被比较者 返回0</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">package demo1HashSet;import java.util.Comparator;import java.util.Set;import java.util.TreeSet;public class SetDemo3 &#123;    public static void main(String[] args) &#123;        // 目标：搞清楚TreeSet集合对于自定义对象的排序        Set&lt;Teacher&gt; set = new TreeSet&lt;&gt;(new Comparator&lt;Teacher&gt;() &#123;            @Override            public int compare(Teacher o1, Teacher o2) &#123;                //return o1.getAge() - o2.getAge(); // 升序,装逼写法有风险                return Double.compare(o1.getAge(),o2.getAge()); // 包装类底层方法            &#125;        &#125;);        // Set&lt;Teacher&gt; set = new TreeSet&lt;&gt;((o1,o2) -&gt; Double.compare(o1.getAge(),o2.getAge()))        set.add(new Teacher(&quot;刘总&quot;,20,6230.4));        set.add(new Teacher(&quot;杨总&quot;,18,3000.2));        set.add(new Teacher(&quot;张总&quot;,20,1999.9));        System.out.println(set);        // 结论：treeSet集合默认不能给自定义对象排序，因为不知道大小规则。        // 结局两种方案        // 1.对象实现Comparable比较接口，重写compare方法，指定大小比较规则。        // 2.让TreeSet集合自带comparator自带比较器对象。指定大小比较规则    &#125;&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="collection-–-Map"><a href="#collection-–-Map" class="headerlink" title="collection – Map"></a>collection – Map</h3><p>单例集合 – 双列集合（键值对集合）</p>
+<p>Map&lt;K,V&gt; （接口）:</p>
+<ol>
+<li><p>HashMap&lt;K,V&gt; （无序，不重复，无索引）</p>
+<p>LinkedHashMap&lt;K,V&gt; (有序，不重复，无索引)</p>
+</li>
+<li><p>TreeMap&lt;K,V&gt; （实现类，按大小默认升序，不重复，无索引）</p>
+</li>
+</ol>
+<p>Map集合遍历方式1：键值对</p>
+<p>​ 定一个keys存键集合，遍历键调用get（）方法找值</p>
+<p>​ 增强for（元素类型 变量 ： 集合）{}</p>
+<p>2，键值对方式：</p>
+<p>​ java提供的<code>entrySet()</code> 方法（获取所有键值对集合）</p>
+<p>​ 再用增强for，调用<code>getkey（）</code>，<code>getValue()</code>方法调用</p>
+<p>3，Lambda表达式</p>
+<p>​ 调用Map方法<code>forEach（）</code> ，里<code>new BiComsumer()</code> 方法重写输出</p>
+<p>增强for遍历：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">package demo2Map;import java.util.HashMap;import java.util.Map;import java.util.Set;public class MapDemo2 &#123;    public static void main(String[] args) &#123;        // 目标：掌握map集合，map常用方法        Map&lt;String,Integer&gt; map = new HashMap&lt;&gt;();        map.put(&quot;嫦娥&quot;,20);        map.put(&quot;女儿国王&quot;,31);        map.put(&quot;嫦娥&quot;,28);        map.put(&quot;铁扇公主&quot;,38);        map.put(&quot;紫霞&quot;,31);        map.put(null,null);        System.out.println(map);        System.out.println(map.get(&quot;嫦娥&quot;));        System.out.println(map.containsKey(&quot;嫦娥&quot;));        System.out.println(map.containsValue(28));        System.out.println(map.remove(&quot;嫦娥&quot;)); // 根据键删除整个键值对//        map.clear();//        System.out.println(map);        System.out.println(map.isEmpty()); // 判断是否为空        System.out.println(map.size());        Set&lt;String&gt; keys = map.keySet();        for(String key : keys)&#123;            System.out.println(key);        &#125;    &#125;&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这是一种多态写法：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Map&lt;String,Integer&gt; map = new LinkedHashMap&lt;&gt;();</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">package demo2Map;import java.util.*;public class MapTest6 &#123;    public static void main(String[] args) &#123;        // 目标：完成map集合相关案例，投票统计程序        calc();    &#125;    public static void calc()&#123;        // 1.把80个学生选择的景点数据拿到程序中，才能统计        List&lt;String&gt; locations = new ArrayList&lt;&gt;();        String[] names = &#123;&quot;天安门&quot;,&quot;西安&quot;,&quot;厦门&quot;,&quot;上海&quot;&#125;;        Random rs  = new Random();        for (int i = 1; i &lt;= 80; i++) &#123;            int index = rs.nextInt(names.length);            locations.add(names[index]);        &#125;        System.out.println(locations);        // 2.统计每个景点被选择的次数        Map&lt;String,Integer&gt; map = new HashMap&lt;&gt;();        System.out.println(map);        for (String location : locations)&#123;//            if (map.containsKey(location))&#123;//                map.put(location,map.get(location) + 1);//            &#125;else&#123;//                map.put(location,1);//            &#125;            // 三元运算符优化代码            map.put(location,map.containsKey(location) ? map.get(location) + 1 : 1);        &#125;        // 把map集合遍历出来        map.forEach((k,v) -&gt; System.out.println(k + &quot;被选择了&quot; + v + &quot;次&quot;));    &#125;&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="Stream流"><a href="#Stream流" class="headerlink" title="Stream流"></a>Stream流</h3><p>JDk8开始，可以用于操作集合或数组的数据</p>
+<p>优势：Stream流大量结合了Lambda语法风格，代码简介，可读性好</p>
+<p>Api：<code>startWith()</code> 方法，判断字符串是否有某个字符</p>
+<p>用法：</p>
+<p>​ 1.调用<code>stream（）</code>方法（集合调用）</p>
+<ul>
+<li>list.stream() 类似工厂传送带</li>
+<li>.flters() 过滤器（可选调）</li>
+<li>.collect() 收集到新list</li>
+</ul>
+<p><strong>获取stream（）流方法</strong></p>
+<p>​ 集合 stream()</p>
+<p>​ 数组 stream() 获当前数组的stream流</p>
+<p>​ of() 获取当前接受数据的stream流</p>
+<p>​ .count() 计算Arrays中数据个数</p>
+<p><strong>工作模式： 数据源（集合&#x2F;数组&#x2F;….） -&gt; 过滤-排序-去重-….(中间方法) -&gt; 获取结果</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">package demo3Stream;import java.util.ArrayList;import java.util.List;import java.util.stream.Collector;import java.util.stream.Collectors;public class StreamDemo1 &#123;    public static void main(String[] args) &#123;        // 认识stream流，掌握基本使用步骤，体会优势和特点        List&lt;String&gt; list = new ArrayList&lt;&gt;();        list.add(&quot;张无忌&quot;);        list.add(&quot;赵敏&quot;);        list.add(&quot;周芷若&quot;);        list.add(&quot;张三丰&quot;);        list.add(&quot;张翠山&quot;);        list.add(&quot;张强&quot;);        // 1.传统方案找法,创建姓张的新集合        List&lt;String&gt; newList = new ArrayList&lt;&gt;();        for(String name : list)&#123;            if (name.startsWith(&quot;张&quot;) &amp;&amp; name.length() == 3)&#123;                newList.add(name);            &#125;        &#125;        System.out.println(newList);        // 2.使用stream流解决        List&lt;String&gt; newlist2 = list.stream().filter(name -&gt; name.startsWith(&quot;张&quot;)).filter(s -&gt; s.length() == 3).collect(Collectors.toList());        System.out.println(newlist2);    &#125;&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>操作（stream）：</strong></p>
+<ul>
+<li>filter – 过滤</li>
+<li>sorted – 元素进行升序排序</li>
+<li>sorted(Comparator &lt;? super T&gt; Comparator) – 指定排序规则</li>
+<li>limit(long maxsize) 获取前几个元素</li>
+<li>skip(long n) 跳过前几个元素</li>
+<li>distinct() 去除流中重复元素</li>
+<li>map 对流加工，返回新流</li>
+<li>concat(stream a, stream b) 合并a，b为一个流</li>
+</ul>
+<p>tip：流只能收集一次</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">package demo3Stream;import java.lang.reflect.Array;import java.util.*;import java.util.stream.Collector;import java.util.stream.Stream;public class StreamDemo2 &#123;    public static void main(String[] args) &#123;        // 获取Stream流        // 1.获取集合的Stream流的方法，调用集合提供的Stream（）方法        Collection&lt;String&gt; list = new ArrayList&lt;&gt;();        Stream&lt;String&gt; s1 = list.stream();        // 2.map集合，怎么拿Stream流        Map&lt;String,Integer&gt; map = new HashMap&lt;&gt;();        // 单独获取键流,调用keySet（）        Stream&lt;String&gt; s2 = map.keySet().stream();        // 获取值流        Stream&lt;Integer&gt; s3 = map.values().stream();        // 获取键值对流        Stream&lt;Map.Entry&lt;String, Integer&gt;&gt; s4 = map.entrySet().stream();        // 3。数组调用stream流        String[] names = &#123;&quot;张三丰&quot;,&quot;张无忌&quot;,&quot;张翠山&quot;,&quot;张良&quot;,&quot;张学友&quot;&#125;;        Stream&lt;String&gt; s5 = Arrays.stream(names);        System.out.println(s5.count()); // 5        Stream&lt;String&gt; s6 = Stream.of(&quot;&quot;,&quot;&quot;,&quot;&quot;);    &#125;&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="斗地主GameTest："><a href="#斗地主GameTest：" class="headerlink" title="斗地主GameTest："></a>斗地主GameTest：</h3><p>主文件：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">package demo4Test;public class Game &#123;    public static void main(String[] args) &#123;        // 斗地主游戏        // 1.每张牌都是一个对象，定义牌类        // 2.游戏房间是一个对象，定义房间类(54张牌)        Room r = new Room();        r.start();    &#125;&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Card.java</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">package demo4Test;public class Card &#123;    private String size;    private String color;    private int num;    public Card()&#123;&#125;    public Card(String size, String color, int num) &#123;        this.size = size;        this.color = color;        this.num = num;    &#125;    public String getSize() &#123;        return size;    &#125;    public void setSize(String size) &#123;        this.size = size;    &#125;    public String getColor() &#123;        return color;    &#125;    public void setColor(String color) &#123;        this.color = color;    &#125;    @Override    public String toString() &#123;        return size + &#x27;\&#x27;&#x27; + color + &#x27;\&#x27;&#x27;;    &#125;    public int getNum() &#123;        return num;    &#125;    public void setNum(int num) &#123;        this.num = num;    &#125;&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Room.java(房间类，实现功能，调用start（）启动)</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">package demo4Test;import java.util.*;public class Room &#123;    // 1.准备54张牌，定义集合容器：存放54张牌    private List&lt;Card&gt; allCards = new ArrayList&lt;&gt;();    // 2.初始化54张牌，用实例代码块    &#123;        // 3.准备点数        String[] sizes = &#123;&quot;3&quot;,&quot;4&quot;,&quot;5&quot;,&quot;6&quot;,&quot;7&quot;,&quot;8&quot;,&quot;9&quot;,&quot;10&quot;,&quot;J&quot;,&quot;Q&quot;,&quot;K&quot;,&quot;A&quot;,&quot;2&quot;&#125;;        // 4.准备花色        String[] colors = &#123;&quot;♣&quot;,&quot;♦&quot;,&quot;♠&quot;,&quot;♥&quot;&#125;;        int num = 0;        // 5.组合点数和花色到牌对象中区        for (String size : sizes)&#123;            num++;            for(String color: colors)&#123;                Card card = new Card(size,color,num);                allCards.add(card);            &#125;        &#125;        Collections.addAll(allCards,new Card(&quot;&quot;,&quot;🃏&quot;,++num), new Card(&quot;&quot;,&quot;👲&quot;,++num) );        System.out.println(&quot;新牌:&quot; + allCards);    &#125;    public void start() &#123;        // 8.洗牌：随机打乱集合中的顺序        Collections.shuffle(allCards);        System.out.println(&quot;洗牌后：&quot; + allCards);        // 9.发牌 定义三个玩家,三个玩家都是集合容器        Map&lt;String,List&lt;Card&gt;&gt; palyers = new HashMap&lt;&gt;();        List&lt;Card&gt; lhc = new ArrayList&lt;&gt;();        palyers.put(&quot;令狐冲&quot;,lhc);        List&lt;Card&gt; lhw = new ArrayList&lt;&gt;();        palyers.put(&quot;令狐白&quot;,lhw);        List&lt;Card&gt; lhp = new ArrayList&lt;&gt;();        palyers.put(&quot;令狐紫&quot;,lhp);        // allCards = &#123;洗牌后的牌&#125;        // 只发51张牌，3张作底牌，每三张三张的发做轮询        for (int i = 0; i &lt; allCards.size() - 3; i++) &#123;            Card card = allCards.get(i);            // 求余算法为三个人发牌            if (i % 3 == 0)&#123;                lhc.add(card);            &#125;else if(i % 3 == 1)&#123;                lhw.add(card);            &#125;else &#123;                lhp.add(card);            &#125;        &#125;        // 10.对牌排序        sortCards(lhc);        sortCards(lhw);        sortCards(lhp);        // 三张底牌        List&lt;Card&gt; listCard = allCards.subList(allCards.size() - 3, allCards.size());        System.out.println(listCard);        // 发底牌        lhp.addAll(listCard);        // 11.看牌        for (Map.Entry&lt;String,List&lt;Card&gt;&gt; entry : palyers.entrySet())&#123;            // 获取玩家名称            String name = entry.getKey();            // 获取玩家牌            List&lt;Card&gt; cards = entry.getValue();            // 打印玩家牌            System.out.println(name + &quot;的牌是：&quot; + cards);        &#125;    &#125;    // Lambda简化代码后：    private void sortCards(List&lt;Card&gt; cards) &#123;        Collections.sort(cards, (o1,o2) -&gt; o2.getNum() - o1.getNum());    &#125;&#125;</span><br></pre></td></tr></table></figure>
+
+<p>“…”写法：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">public static void sum(int...sums)&#123;    System.out.println(sums.length);    for (int i = 0; i &lt; sums.length; i++) &#123;        System.out.println(sums[i]);    &#125;    System.out.println(Arrays.toString(sums));&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<p>collections工具类（一般以s结尾）</p>
+<p>提供常用方法：</p>
+<table>
+<thead>
+<tr>
+<th>addAll((name) , elements)</th>
+<th>shuffle()</th>
+<th>sort(List list)</th>
+<th>sort(List list,comparator &lt;? super T&gt; c)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>批量加数组</td>
+<td>打乱集合中元素顺序</td>
+<td>对集合中元素进行升序排序</td>
+<td>对list集合中元素进行批量比较器</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<h3 id="I-O流（用于读写数据，文件或网络中数据）"><a href="#I-O流（用于读写数据，文件或网络中数据）" class="headerlink" title="I&#x2F;O流（用于读写数据，文件或网络中数据）"></a>I&#x2F;O流（用于读写数据，文件或网络中数据）</h3><p>File是 java.io 包下的类，用来代表当前操作系统的文件</p>
+<p>注：file不能读写文件里存储的数据</p>
+<p><code>new File()</code> 方法创建文件夹操作</p>
+<ul>
+<li>mkdir() 创一个</li>
+<li>mkdirs() 创多级文件夹</li>
+<li>delete() 删除文件夹（只能删空文件夹）</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">public class FileDemo1 &#123;    public static void main(String[] args) &#123;        // 掌握File创建对象代表文件（文件/目录），搞清楚其提供的对文件进行操作的方法        // 1.创建File对象，获取对某个文件的信息        // tip：可以反斜杠，java中两个反斜杠防止”\n“        File f1 = new File(&quot;&quot;);        File f2 = new File(&quot;&quot;);        System.out.println(f1.length());        System.out.println(f2.getName());        System.out.println(f1.isFile());        System.out.println(f2.isDirectory());        // 2.使用相对路径定位文件对象        // 只要带盘符的都是：绝对路径 F:/development/剪辑好精品/精品图片/photo_2025-10-06_16-43-36.jpg        // 相对路径是不带盘符，默认到idea工程下寻找文件，一般用来寻找工程下的文件        File f3 = new File(&quot;day03-File-io\\src\\demo1File\\benson_8&quot;);        System.out.println(f3.length());        // 创建对象代表不存在路径        File f4 = new File(&quot;&quot;);        String[] names = f4.list();        for (String name : names)&#123;            System.out.println(name);        &#125;        File[] files = f4.listFiles();        for (File file : files)&#123;            // 有一额file.delete()方法删除文件是真删，无法修复            System.out.println(file.getAbsoluteFile());        &#125;    &#125;&#125;</span><br></pre></td></tr></table></figure>
+
+<p>File类遍历文件夹方法：</p>
+<ul>
+<li>list() 所有一级文件名到一个字符串数组中返回</li>
+<li>listFile() 所有一级文件对象到数组中返回</li>
+</ul>
+<h3 id="递归"><a href="#递归" class="headerlink" title="递归"></a>递归</h3><p>是一种算法，在程序设计语言中广泛应用，形式上，方法调用自身方法称为递归（会造成死循环，栈内存溢出）</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">package demo1File;public class RecursionDemo2 &#123;    public static void main(String[] args) &#123;        // 计算n的阶乘        System.out.println(f(5));        System.out.println(sum(5));    &#125;    // 典型的递归算法    public static int f(int n)&#123;        if(n == 1)&#123;            return 1;        &#125;        return f(n-1) * n;    &#125;    // 递归计算1+...n的和    public static int sum(int n)&#123;        if (n == 1)&#123;            return 1;        &#125;        return sum(n-1) + n;    &#125;&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="字符集"><a href="#字符集" class="headerlink" title="字符集"></a>字符集</h3><p>标准ASCII字符集（包括英语，符号等）</p>
+<p>使用一个字节存储一个字符，首位是0，共128个字符，对美国佬够用了</p>
+<p>中国人：GBK（汉字内码扩展规范，目标）：</p>
+<p>​ 2w多个汉字等字符</p>
+<p>​ <strong>GBK中一个字符，2个字节存储</strong></p>
+<p>​ GBK兼容ASCII字符集</p>
+<p>Unicode字符集（统一码，万国码）</p>
+<p>​ UTF-32 4个字节表示1字符</p>
+<p>​ UTF-8 可变长编码方案（4个长度区：1，2，3，4个字节，中文为3字节）</p>
+<p>编码方式：</p>
+<table>
+<thead>
+<tr>
+<th>0xxxxxxx</th>
+<th>110xxxxx 10xxxxxx</th>
+<th>111xxxxx 10xxxxxx 10xxxxxx</th>
+<th>1111oxxx 10xxxxx 10xxxxxx</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>2</td>
+<td>3</td>
+<td>4</td>
+</tr>
+</tbody></table>
+<p>tip：英文，数字不易乱码</p>
+<p><strong>对字符的编码解码</strong></p>
+<p>编码(String提供)：</p>
+<ul>
+<li>getBytes()</li>
+<li>getBytes(String charsetName) 指定字符集</li>
+</ul>
+<p>解码：</p>
+<ul>
+<li>String (byte[] bytes)</li>
+<li>String (byte[] bytes,String charsetName) 指定编码解码</li>
+</ul>
+<p>I&#x2F;O流（程序和磁盘&#x2F;网络直接操作）</p>
+<p>I指input，称为输入流，把数据读到内存中</p>
+<p>O指Output，称为输出流，负责写数据出去</p>
+<p><strong>流方向：</strong></p>
+<ul>
+<li>输入流</li>
+<li>输出流</li>
+</ul>
+<p><strong>流的内容：</strong></p>
+<ul>
+<li>字节流<ul>
+<li>音频</li>
+<li>视频</li>
+<li>图片</li>
+</ul>
+</li>
+<li>字符流<ul>
+<li>读写txt，java文件</li>
+</ul>
+</li>
+</ul>
+<p><strong>I&#x2F;O流四大金刚</strong></p>
+<ol>
+<li>字节输入流 InputStream</li>
+<li>字节输出流 OutputStream</li>
+<li>字符输入流 Reader</li>
+<li>字符输出流 Writer</li>
+</ol>
+<p>以上为抽象类</p>
+<p>tip：字节流不适合做中文读写，易乱码</p>
+<p>处理方式：</p>
+<p>​ 1.定义一个与文件大小一样的字节数组，一次性读完文件的全部字节–小文件</p>
+<p>​ 2.读文本适合用字符流，字节流适合做数据转移，如：文本复制（非常合适）</p>
+<p>扩展：每次读取多个字节，性能提升，减少硬盘和内存交换次数</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">package demo4fileinputStream;import java.io.FileInputStream;import java.io.FileNotFoundException;import java.io.InputStream;import java.io.InputStreamReader;public class FileInputDemo1 &#123;    public static void main(String[] args) throws Exception &#123;        // 掌握文件输入流，读写字符数据        // 创建文件字节输入流管道于源文件接通        InputStream is = new FileInputStream(&quot;day03-File-io\\src\\demo4fileinputStream\\shilin&quot;);        // 针对中文，将字节流转为字符流，指定UTF-8编码        InputStreamReader isr = new InputStreamReader(is, &quot;UTF-8&quot;);        // 读取文件中字节并输出（垃圾）//        int n;//        while((n = isr.read()) != -1)&#123;//            // (char) 将字节转成字符//            System.out.print((char)n);//        &#125;        // 每次读写一个字符：性能差，遇到中文乱码        // 使用换行ln后中文单个打出，因为UTF-8中文占3哥字节byte【3】        // 定义一个桶        byte[] buffer = new byte[3];        // 定义一个变量记住多少个字节        int len;        while((len = is.read(buffer)) != -1)&#123;            String str = new String(buffer,0,len);            System.out.print(str);        &#125;    &#125;&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>一次性读完全部字节：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">package demo4fileinputStream;import com.sun.security.jgss.GSSUtil;import java.io.*;public class FileInputDemo2 &#123;    public static void main(String[] args) throws IOException &#123;        InputStream f1 = new FileInputStream(&quot;day03-File-io\\src\\demo4fileinputStream\\shiqi&quot;);        // 一次性读完全部字节，避免汉字输出乱码问题，但是又可以内存溢出        // readAllBytes（），但是文件会内存溢出问题        byte[] bytes = f1.readAllBytes();        // 将字节流转为字符串输出        String rs = new String(bytes);        System.out.println(rs);    &#125;&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>字节输出流操作：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">package demo5fileoutputStream;import java.io.FileNotFoundException;import java.io.FileOutputStream;import java.io.OutputStream;public class fileOutputStreamDemo1 &#123;    public static void main(String[] args) throws Exception &#123;        // 学会使用文件字节输出流  FileOutputStream        OutputStream os = new FileOutputStream(&quot;day03-File-io/src/shiqi.txt&quot;,true);        os.write(&#x27;a&#x27;);        os.write(98);        os.write(&quot;\r\n&quot;.getBytes());        // 写一个字节数组出去        byte[] bytes = &quot;我爱你杨诗琦&quot;.getBytes();        os.write(bytes);        os.write(&quot;\r\n&quot;.getBytes());        // 写一个字符数组的一部分出去        os.write(bytes,0,3);        os.write(&quot;\r\n&quot;.getBytes());        // 关闭字节流，底层上性能更好        os.close();    &#125;&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>文件字符输出流读取字符内容到程序中（多态）：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">package demo7fileReader;import java.io.FileNotFoundException;import java.io.FileReader;import java.io.IOException;import java.io.Reader;public class FileReaderDemo1 &#123;    public static void main(String[] args) throws Exception &#123;        // 掌握文件字符输入流读取字符内容到程序中        // 多态写法将字符流读出来        try(                Reader fr = new FileReader(&quot;day03-File-io\\src\\shiqi02.txt&quot;);                ) &#123;            char[] chs = new char[3];            int len;            while((len = fr.read(chs)) != -1)&#123;                String str = new String(chs,0,len);                System.out.print(str);            &#125;        &#125; catch (Exception e) &#123;            e.printStackTrace();        &#125;    &#125;&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Api：<code>readAllBytes()</code> 一次性读完全部字节</p>
+<p>​ <code>.getByte()</code> 转字符数组</p>
+<p>​ <code>os.write(&quot;\r\n&quot;.getByte())</code> &#x2F;&#x2F;换行</p>
+<p>byte：基本数据类型（字节数组，I&#x2F;O流操作）</p>
+<p>Byte：包装类（泛型，集合等场景）</p>
+<h3 id="资源释放方案"><a href="#资源释放方案" class="headerlink" title="资源释放方案"></a>资源释放方案</h3><p><code>try-catch-finally</code> ，finally必须执行一次，除非JVM终止</p>
+<p>作用：程序执行后进行资源释放操作（专业级操作）</p>
+<p><code>try-with-resource</code> 在try()的括号里面自动调<code>.close()</code>方法，源码继承<code>Autodoseable</code>接口</p>
+<p>​ tip：只能释放资源对象（InputStream,OutputStream）</p>
+<h3 id="字符流"><a href="#字符流" class="headerlink" title="字符流"></a>字符流</h3><p><code>char[] chs = new char[3];</code> &#x2F;&#x2F; 和字节流对象区别</p>
+<p>Reader 管道上加上“true”在link后面，不会覆盖原内容</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">package demo8filedemo;import java.io.File;import java.io.FileWriter;import java.io.Writer;public class fileWriteDemo1 &#123;    public static void main(String[] args) &#123;        // 搞清楚文件字符输出流的使用，写字符出去的流        // 1.创建一个字符输出流对象，搞清楚写出去目的地        try(                // 管道加上true就不会删原来数据                Writer fw = new FileWriter(&quot;day03-File-io\\src\\shiqi03.txt&quot;,true); // 覆盖管道，把原来内容覆盖掉                )&#123;            fw.write(&quot;liushilin&quot;);            // 换行符            fw.write(&quot;\r\n&quot;);            fw.write(97);            fw.write(&quot;java&quot;);            // 写一个字符数组出去            char[] chars = &quot;java&quot;.toCharArray();            fw.write(chars);            fw.write(&quot;\r\n&quot;);            // 写字符数组的一部分出去            fw.write(chars,1,2);        &#125;catch (Exception e)&#123;            e.printStackTrace();        &#125;    &#125;&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>执行顺序：</strong></p>
+<p>编码 – 》 内存缓冲区 –I&#x2F;O–》文件</p>
+<p>（避免多次I&#x2F;O操作）</p>
+<p>​ <code>.flush()</code> 刷新缓冲区</p>
+<p>​ <code>.close()</code> 关闭包含的刷新</p>
+<p>文件复制-字节流</p>
+<p>读文件-字符流</p>
+<p><strong>缓冲流Buffered：</strong></p>
+<table>
+<thead>
+<tr>
+<th>InputStream</th>
+<th>OutputStream</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>FileInputStream</td>
+<td>FileOutputStream</td>
+</tr>
+<tr>
+<td>BufferedInputStream</td>
+<td>BufferedOutputStream</td>
+</tr>
+</tbody></table>
+<p>作用：提高字节输入流读取数据的性能</p>
+<p><strong>原理：输入，输出字节8kb的缓冲池</strong></p>
+<p>字符输入：<code>.readline()</code> 换行读文本，循环全读（按行读取，目前读取文本最优雅方案）</p>
+<p>字符输入：<code>.newline()</code></p>
+<p>tip：idea快读更改多个命名方式： shift + F6</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">package demo9bufferedInputStream;import java.io.BufferedReader;import java.io.FileReader;import java.io.Reader;public class BufferedReaderDemo1 &#123;    public static void main(String[] args) &#123;        // 搞清楚缓冲字符输入流读取字符内容，性能也提升了，多了按行读文本的能力        try(                Reader fr = new FileReader(&quot;day03-File-io\\src\\shiqi02.txt&quot;);                BufferedReader br = new BufferedReader(fr);        ) &#123;//            char[] chs = new char[3];//            int len;//            while((len = fr.read(chs)) != -1)&#123;//                String str = new String(chs,0,len);//                System.out.print(str);//            &#125;            String line;            while((line = br.readLine()) != null)&#123;                System.out.println(line);            &#125;        &#125; catch (Exception e) &#123;            e.printStackTrace();        &#125;    &#125;&#125;</span><br></pre></td></tr></table></figure>
+
+<p>出师表案例：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">package demo9bufferedInputStream;import java.io.BufferedReader;import java.io.BufferedWriter;import java.io.FileReader;import java.io.FileWriter;import java.util.ArrayList;import java.util.Collections;import java.util.List;public class BufferedTest1 &#123;    public static void main(String[] args) &#123;        // 完成《出师表》行乱排序问题        try (                BufferedReader br = new BufferedReader(new FileReader(&quot;&quot;));                BufferedWriter bw = new BufferedWriter(new FileWriter(&quot;&quot;));        ) &#123;            List&lt;String&gt; list= new ArrayList&lt;&gt;();            String line;            while((line = br.readLine()) != null)&#123;                list.add(line);            &#125;            Collections.sort(list);            System.out.println(list);            for(String s  : list)&#123;                bw.write(s);                bw.newLine();            &#125;        &#125;catch (Exception e)&#123;            e.printStackTrace();        &#125;    &#125;&#125;</span><br></pre></td></tr></table></figure>
+
+<p>缓冲字节流方式：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ackage demo9bufferedInputStream;import java.io.*;public class CopyDemo1 &#123;    public static void main(String[] args) &#123;        // 掌握缓冲字节流的使用        // 源文件：        // 目标地址：(复制过去一定要带文件名，无法生成文件名)        try &#123;            copyFile(&quot;&quot;);        &#125; catch (Exception e) &#123;            e.printStackTrace();        &#125;    &#125;    /**     *     类型	含义	用途     byte	基本数据类型	字节数组，IO 流操作     Byte	包装类	泛型、集合等场景     * @param srcPath     * @param destPath     * @throws Exception     */    // 复制文件    public static void copyFile(String srcPath,String destPath) throws Exception &#123;        InputStream fis = null;        OutputStream fos = null;        try &#123;            fis = new FileInputStream(srcPath);            fos = new FileOutputStream(destPath);            byte[] buffer = new byte[1024];            int len;            while((len = fis.read(buffer))  != -1)&#123;                // 1024  1024  3，写入到len长度                fos.write(buffer,0,len);            &#125;            System.out.println(&quot;复制成功！&quot;);            // 关闭流，但是这种有问题            fos.close();            fis.close();        &#125; catch (IOException e) &#123;            e.printStackTrace();        &#125; finally &#123;            // 经典套娃写法解决资源释放问题            try &#123;                if (fis != null) &#123;                    fis.close();                &#125;            &#125; catch (IOException e) &#123;                e.printStackTrace();            &#125;            if (fos != null) &#123;                fos.close();            &#125;        &#125;    &#125;&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>性能分析（原始流&#x2F;缓冲流）：</strong></p>
+<p>测试用例：复制一个超大视频</p>
+<p>拿系统当前时间方式：<code>System.currentTimeMillis()</code> 时间毫秒值（从1970-1-1 00:00:00开始 1s&#x3D;1000ms）</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">package demo9bufferedInputStream;import java.io.*;import java.nio.Buffer;public class TimeTest3 &#123;    private static final String SRC_FILE = &quot;F:\\development\\omg\\2025-03-13_19-22-58.mp4&quot;;    private static final String DEST_FILE = &quot;F:\\development\\剪辑好精品&quot;;    public static void main(String[] args) &#123;        // 缓冲流和原始流性能分析        // 简直是个垃圾//        copyFile1();        // 使用低级字节流按照字节数组方式复制文件        // buffered 加大，低级管道也有可能比高级管道更快        copyFile2();        // 使用高级的缓冲字节流一个一个字节形式复制文件//        copyFile3();        // 使用高级的缓冲流字节数组形式复制文件        copyFile4();    &#125;    // 使用高级的缓冲流字节数组形式复制文件    private static void copyFile4() &#123;        long start = System.currentTimeMillis();        try (                InputStream fis = new BufferedInputStream(new FileInputStream(SRC_FILE));                OutputStream fos = new BufferedOutputStream(new FileOutputStream(DEST_FILE + &quot;2.avi&quot;));        ) &#123;            byte[] bytes = new byte[1024];            int len;            while((len = fis.read(bytes)) != -1)&#123;                fos.write(bytes,0,len);            &#125;        &#125;catch (Exception e)&#123;            e.printStackTrace();        &#125;        long end = System.currentTimeMillis();        System.out.println(&quot;使用高级的缓冲流字节数组形式复制文件时间是：&quot; + (end - start)/1000 + &quot;s&quot;);    &#125;    // 使用高级的缓冲字节流一个一个字节形式复制文件    private static void copyFile3() &#123;        long start = System.currentTimeMillis();        try (                InputStream fis = new BufferedInputStream(new FileInputStream(SRC_FILE));                OutputStream fos = new BufferedOutputStream(new FileOutputStream(DEST_FILE + &quot;2.avi&quot;));        ) &#123;            int len;            while((len = fis.read()) != -1)&#123;                fos.write(len);            &#125;        &#125;catch (Exception e)&#123;            e.printStackTrace();        &#125;        long end = System.currentTimeMillis();        System.out.println(&quot;使用高级的缓冲字节流一个一个字节形式复制文件时间是：&quot; + (end - start)/1000 + &quot;s&quot;);    &#125;    // 使用低级字节流按照字节数组方式复制文件    private static void copyFile2() &#123;        long start = System.currentTimeMillis();        try (                InputStream fis = new FileInputStream(SRC_FILE);                OutputStream fos = new FileOutputStream(DEST_FILE + &quot;2.avi&quot;)        ) &#123;            byte[] bytes = new byte[1024];  // 1kb            int len;            while((len = fis.read(bytes)) != -1)&#123;                fos.write(bytes,0,len);            &#125;        &#125;catch (Exception e)&#123;            e.printStackTrace();        &#125;        long end = System.currentTimeMillis();        System.out.println(&quot;低级字节流按照字节数组形式复制文件时间是：&quot; + (end - start)/1000 + &quot;s&quot;);    &#125;    // 使用原始流一个一个字节复制文件    private static void copyFile1() &#123;        long start = System.currentTimeMillis();        try (                InputStream fis = new FileInputStream(SRC_FILE);                OutputStream fos = new FileOutputStream(DEST_FILE + &quot;1.avi&quot;);        ) &#123;            int len;            while((len = fis.read()) != -1)&#123;                fos.write(len);            &#125;        &#125;catch (Exception e)&#123;            e.printStackTrace();        &#125;        long end = System.currentTimeMillis();        System.out.println(&quot;低级字节流按照一个一个字节形式复制文件时间是：&quot; + (end-start)/1000 + &quot;s&quot;);    &#125;&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>结果：buffered缓冲池加大，低级管道也有可能比高级快。</strong></p>
+<p><strong>输入输入流，结合字节数组是最优性能</strong></p>
+<p>特：字符输入<strong>转换流</strong> <code>InputStreamReader</code> ，解决不同编码，字符流读取文本乱码问题</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">package demo10inputstreamreader;import java.io.*;public class Demo1 &#123;    public static void main(String[] args) &#123;        // 不同编码读取乱码的问题        // 思想：先提取文件原始字节流        try (                // 拿到GBK的字节原始流                InputStream is = new FileInputStream(&quot;day03-File-io\\src\\shiqi04.txt&quot;);                // 使用InputStreamReader（）将GBK指定原始字节流解析                Reader isr = new InputStreamReader(is,&quot;GBK&quot;);                // 转为高级缓冲流                BufferedReader br = new BufferedReader(isr);        ) &#123;            String len;            while((len = br.readLine()) != null)&#123;                System.out.println(len);            &#125;        &#125;catch (Exception e)&#123;            e.printStackTrace();        &#125;    &#125;&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="打印流"><a href="#打印流" class="headerlink" title="打印流"></a>打印流</h3><p>printStream&#x2F;printWrite (字节&#x2F;字符)</p>
+<p><strong>特殊数据流：</strong> <code>DataInputStream</code> <code>DataOutputStream</code> (允许数据类型一并写出)</p>
+<p>I&#x2F;O框架（Framework）</p>
+<p><strong>用的“<a target="_blank" rel="noopener" href="https://commons.apache.org/io/download_io.cgi%E2%80%9D">https://commons.apache.org/io/download_io.cgi”</a> Apache的commons IO的jar包</strong></p>
+<p>**用法：**导入commons-io-2.11.0.jar，项目中新建” .lib “库文件，在jar包文件右键，”Add ad Library” (在类包中使用，否则无法导入)</p>
+<p><strong>打印流使用：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">package printstream;import java.io.PrintStream;public class printStreamDemo1 &#123;    public static void main(String[] args) &#123;        // 打印流使用        try(                PrintStream ps = new PrintStream(&quot;day03-File-io/src/ps.txt&quot;);                )&#123;            ps.println(97);            ps.println(&#x27;a&#x27;);            ps.println(&quot;你是个傻逼&quot;);            ps.println(true);            ps.println(99.9);        &#125;catch (Exception e)&#123;            e.printStackTrace();        &#125;    &#125;&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>特殊数据流</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">package printstream;import java.io.DataInputStream;import java.io.DataOutputStream;import java.io.FileOutputStream;import java.io.InputStream;public class dataStreamDemo2 &#123;    public static void main(String[] args) &#123;        // 特殊数据流        try(                DataOutputStream dos = new DataOutputStream(new FileOutputStream(&quot;day03-File-io/src/data.txt&quot;));                )&#123;                // 写出的文件不是乱码，是带了类型的                dos.writeByte(&#x27;a&#x27;);                dos.writeUTF(&quot;nihao&quot;);                dos.writeInt(97);                dos.writeDouble(99.9);        &#125;catch (Exception e)&#123;            e.printStackTrace();        &#125;    &#125;&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="多线程（思想-代码）Thread"><a href="#多线程（思想-代码）Thread" class="headerlink" title="多线程（思想&gt;代码）Thread"></a>多线程（思想&gt;代码）Thread</h3><p><strong>创建方式1：</strong></p>
+<ol>
+<li>定义一个子类<code>MyThread</code> 类继承 java.lang.Thread，重写<code>run()</code> 方法</li>
+<li>创建 <code>Mythread</code> 类对象</li>
+<li>调用线程的<code>start()</code>对象启动线程（启动后执行run()）</li>
+</ol>
+<p>缺点：单继承</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">package demo1create;public class demo1create &#123;    // main方法本身是有一条主线程负责执行的    public static void main(String[] args) &#123;        // 认识多线程，掌握创建线程的方式一,继承thread类实现        // 4.创建线程类对象，代表线程        MyTread myTread = new MyTread();        // 5.调用start方法，启动线程        myTread.start();        for (int i = 0; i &lt; 3; i++) &#123;            System.out.println(&quot;主线程输出：&quot; + i);        &#125;    &#125;&#125;class MyTread extends Thread&#123;    // 2. 重写Thread的run方法    @Override    public void run()&#123;        // 3.在run方法中编写线程的任务代码        for (int i = 0; i &lt; 5; i++) &#123;            System.out.println(&quot;子线程已经启动：&quot; + i);        &#125;    &#125;&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>创建方式2</strong></p>
+<ol>
+<li>定义线程任务类<code>MyRunnable</code>实现接口<code>Runnable</code>接口，重写<code>run()</code>方法</li>
+<li>创建<code>MyRunnable</code>对象</li>
+<li>把<code>MyRunnable</code> 任务对象交给Thread线程对象处理</li>
+<li>调<code>start()</code>启动</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">package demo1create;public class ThreadDemo2 &#123;    public static void main(String[] args) &#123;        // 掌握多线程的创建方式二：实现Runnable接口来创建        // 3.创建线程任务类代表一个线程        MyRunnable myRunnable = new MyRunnable();        // 4.把线程任务对象交给一个线程对象来处理        Thread r = new Thread(myRunnable);        // 5.启动线程任务对象        r.start();        for (int i = 0; i &lt; 5; i++) &#123;            System.out.println(&quot;主线程执行开跑：&quot; + i);        &#125;    &#125;&#125;// 1.定义一个线程任务类来实现Runnable接口class MyRunnable implements Runnable&#123;    // 2.重写run方法设置线程    @Override    public void run()&#123;        for (int i = 0; i &lt; 5; i++) &#123;            System.out.println(&quot;子线程启动：&quot; + i);        &#125;    &#125;&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>创建方式3</strong></p>
+<p><strong>可以返回线程执行完毕后的结果</strong></p>
+<p><strong>利用Callable接口，FutureTask类来实现</strong></p>
+<ol>
+<li>定个类实现<code>Callable</code>接口，重写call方法，封装要做的事，返回数据</li>
+<li>把<code>Callable</code>类型对象封装成<code>FutureTask</code>（线程任务对象）</li>
+<li>调Thread对象的start()方法启动线程</li>
+<li>调用<code>FutureTack</code>的<code>get</code>方法获返回结果</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">package demo1create;import java.util.concurrent.Callable;import java.util.concurrent.FutureTask;public class ThreadDemo3 &#123;    public static void main(String[] args) &#123;        // 创建线程的第三种方式        // 实现Callable接口，优势，获得线程执行完毕后的返回值        // 3.创建Callable接口的实现对象        Callable&lt;String&gt; mc = new MyCallable(100);        // 4.包装成FutureTask线程任务对象        FutureTask&lt;String&gt; ft = new FutureTask&lt;&gt;(mc);        /**         * 未来对象作用         * 本质是一个Runnable线程任务对象，可以交给Thread线程对象处理         */        // 5.调用Tread方法的start方法启动线程        Thread tr = new Thread(ft);        tr.start();        // 线程2：        Callable&lt;String&gt; mt = new MyCallable(50);        FutureTask&lt;String&gt; f1 = new FutureTask&lt;&gt;(mt);        Thread tr2 = new Thread(f1);        tr2.start();        // 6.调用FutureTask里的get方法获取返回值        // 这里get方法异常，建议分开try  catch(不同线程异常之间不容易混杂)        try &#123;            // 如果主线程发现第一个线程还没执行完毕，会让出cpu，等第一个线程执行完毕后，才会往下执行            System.out.println(ft.get());        &#125; catch (Exception e) &#123;            e.printStackTrace();        &#125;        try &#123;            // 如果主线程发现第二个线程还没执行完毕，会让出cpu，等第一个线程执行完毕后，才会往下执行            System.out.println(f1.get());        &#125; catch (Exception e) &#123;            e.printStackTrace();        &#125;    &#125;&#125;// 定义一个实现类实现Callable接口class MyCallable implements Callable&lt;String&gt;&#123;    // 有参构造器接受传参    private int n;    public MyCallable(int n)&#123;        this.n = n;    &#125;    // 实现call方法，定义线程执行体    public String call()&#123;        int sum = 0;        for (int i = 0; i &lt;= n; i++) &#123;            System.out.println(i);            sum += i;        &#125;        return &quot;子线程返回的结果&quot; + n + &quot;的和是：&quot; + sum;    &#125;&#125;</span><br></pre></td></tr></table></figure>
+
+<p>**获取线程名字：**Thread-索引（默认）</p>
+<p>方法：</p>
+<ul>
+<li>getName() 方法</li>
+<li>currentThread() Thread方法获主线程</li>
+<li>setName() 设置线程名</li>
+<li>join() 线程插队</li>
+</ul>
+<p><strong>线程睡眠（sleep()，百度网盘不冲会员限速类似）</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">package demo2threadapi;public class ThreadApiDemo2 &#123;    public static void main(String[] args) &#123;        // 线程休眠sleep（）        for (int i = 0; i &lt; 10; i++) &#123;            System.out.println(i);            try&#123;                // 这一行代码几万块                Thread.sleep(1000);            &#125;catch (Exception e)&#123;                e.printStackTrace();            &#125;        &#125;    &#125;&#125;</span><br></pre></td></tr></table></figure>
+
+<p>join()方法：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">package demo2threadapi;public class ThreadApiDemo3 &#123;    public static void main(String[] args) &#123;        // 搞清楚线程的join方法  调用这个方法的线程先执行（线程插队）        MyThread2 t = new MyThread2(&quot;小琦&quot;);        t.start();        for (int i = 0; i &lt; 5; i++) &#123;            System.out.println(Thread.currentThread().getName() + &quot;线程输出：&quot; + i);            if (i == 1)&#123;                try &#123;                    t.join();  // 线程插队                &#125; catch (Exception e) &#123;                    e.printStackTrace();                &#125;            &#125;        &#125;    &#125;&#125;class MyThread2 extends Thread&#123;    public  MyThread2(String name)&#123;        super(name);    &#125;    @Override    public void run()&#123;        for (int i = 0; i &lt; 5; i++) &#123;            System.out.println(Thread.currentThread().getName() + &quot;子线程输出是：&quot; + i);        &#125;    &#125;&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="线程安全问题"><a href="#线程安全问题" class="headerlink" title="线程安全问题"></a>线程安全问题</h3><p>多个线程，同时操作同一个共享资源时，业务安全问题（银行取钱问题）</p>
+<p><strong>解决方案：</strong></p>
+<p>线程同步，让多个线程先后依次访问共享资源（加锁，每次只允许一个线程加锁）</p>
+<p><em>模拟线程安全</em></p>
+<p>threadDemo1.java:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">package demo3threadsafe;public class threadDemo1 &#123;    public static void main(String[] args) &#123;        // 模拟线程安全问题        Account acc = new Account(&quot;ICBC-01&quot;,100000);        new DrawThread(&quot;小刘&quot;,acc).start();        new DrawThread(&quot;小杨&quot;,acc).start();    &#125;&#125;</span><br></pre></td></tr></table></figure>
+
+<p>DrawThread.java:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">package demo3threadsafe;public class DrawThread extends Thread&#123;    private Account acc;    public DrawThread(String name,Account acc) &#123;        super(name);        this.acc = acc;    &#125;    @Override    public void run()&#123;        acc.drawMoney(100000);    &#125;&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Account.java:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">package demo3threadsafe;public class Account &#123;    private String cardId;    private double money;    public Account()&#123;&#125;    public Account(String cardId, double money) &#123;        this.cardId = cardId;        this.money = money;    &#125;    public String getCardId() &#123;        return cardId;    &#125;    public void setCardId(String cardId) &#123;        this.cardId = cardId;    &#125;    public double getMoney() &#123;        return money;    &#125;    public void setMoney(double money) &#123;        this.money = money;    &#125;    public void drawMoney(double money)&#123;        String name = Thread.currentThread().getName();        if (this.money &gt;= money)&#123;            System.out.println(name + &quot;取钱成功，吐出了：&quot; + this.money + &quot;元&quot;);            this.money -= money;            System.out.println(name + &quot;取钱成功，余额剩下：&quot; + this.money + &quot;CNY&quot;);        &#125;else&#123;            System.out.println(name + &quot;取钱失败，余额不足&quot;);        &#125;    &#125;&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>方式一（同步代码块）：</strong></p>
+<p>原理：每次只允许一个线程加锁后进入，执行完毕后自动解锁，其他线程才可执行</p>
+<p>使用：synchronized(同步锁){ 访问核心代码块 } （锁对象）</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">// 调整Account文件里的这个部分，用&quot;this&quot;作为锁对象// 用this账户作为他们的锁    public void drawMoney(double money)&#123;        String name = Thread.currentThread().getName();        synchronized (this) &#123;            if (this.money &gt;= money)&#123;                System.out.println(name + &quot;取钱成功，吐出了：&quot; + this.money + &quot;元&quot;);                this.money -= money;                System.out.println(name + &quot;取钱成功，余额剩下：&quot; + this.money + &quot;CNY&quot;);            &#125;else&#123;                System.out.println(name + &quot;取钱失败，余额不足&quot;);            &#125;        &#125;    &#125;&#125;</span><br></pre></td></tr></table></figure>
+
+<p>**锁的选择：**无static称实例方法。锁对象不能随便选择唯一对象，建议使用共享资源作为锁对象，<strong>实例方法用this作锁对象。对静态资源建议用字节码（类名.class） 对象作为锁对象</strong></p>
+<hr>
+<p><strong>方式二同步方法：</strong></p>
+<p>把核心方法（共享的）上锁，<strong>修饰符 <code>synchronized</code> 返回值类型 方法名称（形参列表）{ 操作共享资源代码 }</strong></p>
+<p><strong>Lock锁</strong></p>
+<p><code>private final lock lk = new ReentrantLock();</code> &#x2F;&#x2F; final 防止撬锁</p>
+<p>lk.lock() 上锁</p>
+<p>lk.unlock() 解锁，放try - Finally 这里解锁，防异常</p>
+<p>区别部分操作：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">public void drawMoney(double money)&#123;        String name = Thread.currentThread().getName();        lk.lock();        try &#123;            if (this.money &gt;= money)&#123;                System.out.println(name + &quot;取钱成功，吐出了：&quot; + this.money + &quot;元&quot;);                this.money -= money;                System.out.println(name + &quot;取钱成功，余额剩下：&quot; + this.money + &quot;CNY&quot;);            &#125;else&#123;                System.out.println(name + &quot;取钱失败，余额不足&quot;);            &#125;        &#125; finally &#123;            lk.unlock();        &#125;    &#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="线程池"><a href="#线程池" class="headerlink" title="线程池"></a>线程池</h3><p>任务对象：workQueue</p>
+<p>工作线程：workThread</p>
+<p>任务接口：Runnable&#x2F;Callable</p>
+<p>思想：线程复用</p>
+<p>方式1：</p>
+<p>​ JDK5.0起提供了线程池接口：<code>ExecutorService</code> ,实现类 <code>ThreadPoolExecutor</code></p>
+<p>方式2：</p>
+<p>​ 使用<code>Executor</code>线程池工具类，调用方法返回不同特点的线程池对象</p>
+<p>一·，通过ThreadPoolExecutor创线程池对象</p>
+<ol>
+<li>参数1，corePoolSize：指定线程池核心线程数 （正式工：2）</li>
+<li>maximumPoolSize：指定池最大线程数 （最大员工：5，临时工：2）</li>
+<li>keepAliveTime：指定临时线程存活时间 （临时工空闲多久被开除）</li>
+<li>unit：指定线程存活时间单位（秒，分，时，天）</li>
+<li>workQueue：指定线程池任务队列 （客人排队的地方）</li>
+<li>threadFactory：指定线程工厂 （负责招聘员工的 ）</li>
+<li>handler：指定线程池任务拒绝策略 （忙不过来咋办）</li>
+</ol>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://bensonfuck.github.io">Doctor Liu</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://bensonfuck.github.io/2025/11/15/javaEE%E5%8A%A0%E5%BC%BA/">https://bensonfuck.github.io/2025/11/15/javaEE%E5%8A%A0%E5%BC%BA/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://bensonfuck.github.io" target="_blank">BensonFuck</a>！</span></div></div><div class="tag_share"><div class="post-share"><div class="social-share" data-image="/img/butterfly-icon.png" data-sites="facebook,x,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/2025/11/24/1124%E8%B5%A3%E5%B7%9E/" title="1124赣州"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">1124赣州</div></div><div class="info-2"><div class="info-item-1">2025.11.23晚目前还在回广的火车上，心情百感交集，跟你两天在赣州相会，让我深醉其中。让我愈加喜欢你，深爱你，一种我对你更加了解，坦然。周五下午旷课跑去见你的，路上的久坐难耐，在到达赣州站的一刻都消散，一种奔赴爱人的决心和爱意。此前，我一直觉得我们缺少一次正式的表白，这也是这些没见的日子里纠结的问题，虽然源于目前资金受限，但不妨碍我对你倾尽所有的心。一个小小的魔术，一篇简单的“录用邮件”，一个副驾驶的鲜花，都是你值得的拥有。很庆幸所有的一切时间都安排妥当，恰逢我的杨小姐也喜欢。  第一天给到我蛮多很妙的感觉，毕竟第二天容易陷入离别的焦虑，让我们内心涟漪。一起开着车游逛这座小城，给我BB累坏了，在副驾频频入睡，但跟BB一起的我一直乐此不疲，看着熟睡的你，这一刻非常幸福，以后也必将如此！印象深刻的是回到酒店被那个煞笔车挡路停车时，你是我唯一的信任，遇到无理老太你会竞争，虽然是小事一桩，但两个敢做敢竞争互相信任支持，有什么是做不到做不成功的呢！也许是不服水土肠胃作祟，那晚突然变冷，吹的肚子闹腾影响进度，我随口的一句可能肠炎犯了，对于我来说原本小事一桩，让我没想到的是你去给我买药，...</div></div></div></a><a class="pagination-related" href="/2025/11/15/java%E9%AB%98%E7%BA%A7/" title="java高级"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">java高级</div></div><div class="info-2"><div class="info-item-1">java面向对象高级（代码块，内部类，函数时编程，常用API，gui编程&#x2F;不重要） 代码块是类的5大组成部分：成员变量，构造器，方法，代码块，内部类 API：Arrays,toString(数组名) &#x2F;&#x2F;返回数组内容 1/*** 执行顺序（静态代码块 static&#123;&#125;）* class -&gt; static(对静态资源初始化) —&gt; main（优先执行）*/  内部类1.内部类可以直接访问外部类的  静态成员（static修饰） 实例成员（无static）  2.外部类名 .this 可以拿到寄生的外部类对象外部类名.this 静态内部类属于外部类本身（内部类有static修饰） Outer.Inner oi = new Outer.Inner(); 匿名内部类（不用为类声明名字，默认隐藏名字）本质是子类，同时会立即创建一个子类对象 -&gt; 外部类名$ 编号 用法： 1Animal a = new Animal()&#123;    重写方法  // 立即重写抽象父类方法&#125;;//中段简写： class cli...</div></div></div></a></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/butterfly-icon.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">Doctor Liu</div><div class="author-info-description">life your life do you want to do</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">12</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">5</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#javaEE%E5%9F%BA%E7%A1%80%E5%8A%A0%E5%BC%BA"><span class="toc-number">1.</span> <span class="toc-text">javaEE基础加强</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BC%82%E5%B8%B8%E4%BD%93%E7%B3%BB%EF%BC%88java-lang-Throuable%EF%BC%89"><span class="toc-number">2.</span> <span class="toc-text">异常体系（java.lang.Throuable）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86"><span class="toc-number">3.</span> <span class="toc-text">异常处理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B3%9B%E5%9E%8B"><span class="toc-number">4.</span> <span class="toc-text">泛型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9B%86%E5%90%88%E6%A1%86%E6%9E%B6"><span class="toc-number">5.</span> <span class="toc-text">集合框架</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Collection"><span class="toc-number">6.</span> <span class="toc-text">Collection</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Set-%E9%9B%86%E5%90%88"><span class="toc-number">7.</span> <span class="toc-text">Set 集合</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#LinkedHashSet%E5%BA%95%E5%B1%82%E5%8E%9F%E7%90%86"><span class="toc-number">8.</span> <span class="toc-text">LinkedHashSet底层原理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#collection-%E2%80%93-Map"><span class="toc-number">9.</span> <span class="toc-text">collection – Map</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Stream%E6%B5%81"><span class="toc-number">10.</span> <span class="toc-text">Stream流</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%97%E5%9C%B0%E4%B8%BBGameTest%EF%BC%9A"><span class="toc-number">11.</span> <span class="toc-text">斗地主GameTest：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#I-O%E6%B5%81%EF%BC%88%E7%94%A8%E4%BA%8E%E8%AF%BB%E5%86%99%E6%95%B0%E6%8D%AE%EF%BC%8C%E6%96%87%E4%BB%B6%E6%88%96%E7%BD%91%E7%BB%9C%E4%B8%AD%E6%95%B0%E6%8D%AE%EF%BC%89"><span class="toc-number">12.</span> <span class="toc-text">I&#x2F;O流（用于读写数据，文件或网络中数据）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%80%92%E5%BD%92"><span class="toc-number">13.</span> <span class="toc-text">递归</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AD%97%E7%AC%A6%E9%9B%86"><span class="toc-number">14.</span> <span class="toc-text">字符集</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%B5%84%E6%BA%90%E9%87%8A%E6%94%BE%E6%96%B9%E6%A1%88"><span class="toc-number">15.</span> <span class="toc-text">资源释放方案</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AD%97%E7%AC%A6%E6%B5%81"><span class="toc-number">16.</span> <span class="toc-text">字符流</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%89%93%E5%8D%B0%E6%B5%81"><span class="toc-number">17.</span> <span class="toc-text">打印流</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A4%9A%E7%BA%BF%E7%A8%8B%EF%BC%88%E6%80%9D%E6%83%B3-%E4%BB%A3%E7%A0%81%EF%BC%89Thread"><span class="toc-number">18.</span> <span class="toc-text">多线程（思想&gt;代码）Thread</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8%E9%97%AE%E9%A2%98"><span class="toc-number">19.</span> <span class="toc-text">线程安全问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BA%BF%E7%A8%8B%E6%B1%A0"><span class="toc-number">20.</span> <span class="toc-text">线程池</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/01/07/%E4%B8%80%E8%B5%B7%E7%9A%84%E7%AC%AC%E4%B8%80%E6%AC%A1%E8%B7%A8%E5%B9%B4%E2%80%94%E2%80%94%E6%99%AF%E5%BE%B7%E9%95%87%E5%8D%97%E6%98%8C/" title="一起的第一次跨年——景德镇南昌">一起的第一次跨年——景德镇南昌</a><time datetime="2026-01-07T02:00:00.000Z" title="发表于 2026-01-07 10:00:00">2026-01-07</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/11/24/1124%E8%B5%A3%E5%B7%9E/" title="1124赣州">1124赣州</a><time datetime="2025-11-24T02:00:00.000Z" title="发表于 2025-11-24 10:00:00">2025-11-24</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/11/15/java%E9%AB%98%E7%BA%A7/" title="java高级">java高级</a><time datetime="2025-11-15T02:00:00.000Z" title="发表于 2025-11-15 10:00:00">2025-11-15</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/11/15/javaEE%E5%8A%A0%E5%BC%BA/" title="javaEE加强">javaEE加强</a><time datetime="2025-11-15T02:00:00.000Z" title="发表于 2025-11-15 10:00:00">2025-11-15</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/11/14/java%E5%9F%BA%E7%A1%80/" title="java基础">java基础</a><time datetime="2025-11-14T02:00:00.000Z" title="发表于 2025-11-14 10:00:00">2025-11-14</time></div></div></div></div></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2023 - 2026 By Doctor Liu</span></div><div class="footer_custom_text">Powered by Hexo & Butterfly</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=5.7.0"></script><script src="/js/main.js?v=5.7.0"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
